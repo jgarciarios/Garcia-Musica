@@ -3,6 +3,7 @@ export interface TimelineItem {
   description: string;
   type: "education" | "professional" | "certification";
   accent: "violet" | "orange" | "green";
+  label: string; // custom label replacing the generic "Formación"
 }
 
 export interface Pilar {
@@ -34,9 +35,15 @@ export interface Proyecto {
 export interface Produccion {
   id: string;
   artist: string;
+  releases: ProduccionRelease[];
+}
+
+export interface ProduccionRelease {
   title: string;
   year?: string;
   roles: string[];
+  coverImage?: string;
+  spotifyUrl?: string;
 }
 
 export interface BlogPost {
@@ -47,43 +54,54 @@ export interface BlogPost {
   tags: string[];
 }
 
+export interface Colaboracion {
+  id: string;
+  text: string;
+}
+
 // ─── TIMELINE ──────────────────────────────────────────────────────────────
 export const TIMELINE: TimelineItem[] = [
   {
-    era: "Formación musical desde la infancia",
-    description: "Participación en coros desde la escuela primaria. Desarrollo de la escucha, el canto y el trabajo grupal. Piano y guitarra como primeros instrumentos.",
+    era: "Coro del Liceo Francés — Primeros escenarios",
+    description: "Inicio en el mundo de la música a través del canto coral. A los 8 años, presentación en vivo en Canal 13. Primera experiencia televisiva y escénica.",
     type: "education",
     accent: "green",
+    label: "Origen",
   },
   {
     era: "Instituto Santa Ana — Piano y Coro",
-    description: "Formación formal en piano y coro. Raíces de una sensibilidad que moldearía toda la trayectoria artística posterior.",
+    description: "Desarrollo de lectura musical, piano y canto. Raíces de una sensibilidad que moldearía toda la trayectoria artística posterior.",
     type: "education",
     accent: "green",
+    label: "Conservatorio",
   },
   {
     era: "EMBA — Escuela de Música de Buenos Aires",
-    description: "Formación integral como músico profesional. Seleccionado para trabajar con Pedro Aznar en un workshop intensivo de producción.",
+    description: "Carrera integral como músico profesional. Seleccionado por Pedro Aznar para participar en un taller intensivo de producción musical.",
     type: "education",
     accent: "violet",
+    label: "Escuela",
   },
   {
-    era: "Mezcla y Diseño Sonoro — Mariano Bilinkis",
-    description: "Estudios especializados en mezcla y diseño sonoro. Desarrollo de criterio técnico y visión estética aplicada a la producción.",
+    era: "Workshop 100% Mix y Diseño Sonoro — Mariano Bilinkis",
+    description: "Especialización en mezcla y diseño sonoro. Desarrollo de criterio técnico y visión estética aplicada a la producción.",
     type: "education",
     accent: "orange",
+    label: "Workshop",
   },
   {
     era: "+20 Años de Trayectoria Profesional",
-    description: "Músico, productor, compositor, docente y coach. Proyectos de banda, producciones originales, audiovisuales, clases y mentorías en constante evolución. Buenos Aires.",
+    description: "Músico, productor, compositor, sesionista, docente y coach. Proyectos de banda, producciones originales, audiovisuales, clases y mentorías en constante evolución. Buenos Aires.",
     type: "professional",
     accent: "orange",
+    label: "Profesional",
   },
   {
     era: "Coaching Ontológico — ICEA",
     description: "Certificación en Coaching Ontológico. Integración de herramientas de acompañamiento creativo y desarrollo personal en el trabajo con músicos y artistas.",
     type: "certification",
     accent: "violet",
+    label: "Certificación",
   },
 ];
 
@@ -104,31 +122,31 @@ export const PILARES: Pilar[] = [
     accent: "orange",
   },
   {
+    id: "sesionista",
+    title: "Músico Sesionista",
+    description: "Guitarras y voces para proyectos en estudio y en vivo. Adaptación al estilo de cada artista con criterio musical propio.",
+    tags: ["Guitarras", "Voces", "Estudio", "Live"],
+    accent: "green",
+  },
+  {
     id: "clases",
     title: "Clases y Mentorías",
     description: "Enseñanza personalizada de guitarra, teoría, producción y composición. Metodología adaptada a cada etapa del artista.",
     tags: ["Guitarra", "Teoría", "Producción"],
-    accent: "green",
+    accent: "violet",
   },
   {
     id: "audiovisual",
     title: "Música para Audiovisuales",
     description: "Composición de bandas sonoras, jingles y música para cine, publicidad y video. Sincronización emocional entre imagen y sonido.",
     tags: ["Cine", "Publicidad", "Documental"],
-    accent: "violet",
+    accent: "orange",
   },
   {
     id: "shows",
     title: "Shows en Vivo",
     description: "Performances con energía, presencia escénica y conexión genuina con el público. Años de experiencia en escenarios de toda escala.",
     tags: ["Conciertos", "Festivales", "Eventos"],
-    accent: "orange",
-  },
-  {
-    id: "band",
-    title: "Band Experience",
-    description: "Workshop musical para empresas. Un equipo se convierte en banda para experimentar liderazgo, escucha activa y trabajo colaborativo.",
-    tags: ["Team Building", "Workshop", "Coach"],
     accent: "green",
   },
 ];
@@ -242,55 +260,121 @@ export const PROYECTOS: Proyecto[] = [
       },
     ],
   },
-];
-
-// ─── PRODUCCIONES EXTERNAS ──────────────────────────────────────────────────
-export const PRODUCCIONES: Produccion[] = [
   {
-    id: "andrea-levitt-1",
-    artist: "Andrea Levitt",
-    title: "Punto Inicial",
-    year: "2013",
-    roles: ["Producción", "Guitarras", "Teclados", "Coros", "Grabación", "Mezcla", "Mastering"],
+    id: "fruto-gris",
+    name: "Fruto Gris",
+    role: "Guitarras · Voces · Producción",
+    releases: [
+      {
+        id: "fruto-gris-releases",
+        title: "Producciones",
+        year: "—",
+        type: "Álbum",
+        roles: ["Guitarras", "Voces", "Producción"],
+      },
+    ],
   },
   {
-    id: "andrea-levitt-2",
+    id: "flor-albarracin",
+    name: "Flor Albarracin y La Relámpago",
+    role: "Guitarras · Sesionista",
+    releases: [
+      {
+        id: "flor-albarracin-releases",
+        title: "Producciones",
+        year: "—",
+        type: "Álbum",
+        roles: ["Guitarras", "Sesionista"],
+      },
+    ],
+  },
+];
+
+// ─── OTRAS PRODUCCIONES ──────────────────────────────────────────────────────
+export const PRODUCCIONES: Produccion[] = [
+  {
+    id: "vir-salazar",
+    artist: "Vir Salazar",
+    releases: [
+      {
+        title: "Producción",
+        roles: ["Producción", "Guitarras", "Grabación", "Mezcla", "Mastering"],
+      },
+    ],
+  },
+  {
+    id: "andrea-levitt",
     artist: "Andrea Levitt",
-    title: "De Lá Pra Aca",
-    roles: ["Producción", "Guitarras", "Coros", "Grabación", "Mezcla", "Mastering"],
+    releases: [
+      {
+        title: "Punto Inicial",
+        year: "2013",
+        roles: ["Producción", "Guitarras", "Teclados", "Coros", "Grabación", "Mezcla", "Mastering"],
+      },
+      {
+        title: "De Lá Pra Aca",
+        roles: ["Producción", "Guitarras", "Coros", "Grabación", "Mezcla", "Mastering"],
+      },
+    ],
   },
   {
     id: "cata-carpena",
     artist: "Cata Carpena",
-    title: "AEL",
-    year: "2015/16",
-    roles: ["Producción", "Grabación", "Guitarras", "Programaciones", "Mezcla", "Mastering"],
+    releases: [
+      {
+        title: "AEL",
+        year: "2015/16",
+        roles: ["Producción", "Grabación", "Guitarras", "Programaciones", "Mezcla", "Mastering"],
+      },
+    ],
   },
   {
-    id: "lisa-queti-1",
-    artist: "Lisa Queti",
-    title: "Junta Tus Cosas",
-    year: "2021",
-    roles: ["Producción", "Guitarras", "Teclados", "Grabación", "Mezcla", "Mastering"],
+    id: "sebastian-zambrana",
+    artist: "Sebastian Zambrana",
+    releases: [
+      {
+        title: "Producción",
+        roles: ["Producción", "Guitarras", "Grabación", "Mezcla"],
+      },
+    ],
   },
   {
-    id: "lisa-queti-2",
+    id: "lisa-queti",
     artist: "Lisa Queti",
-    title: "Llamame por mi Nombre",
-    roles: ["Producción", "Guitarras", "Grabación", "Mezcla", "Mastering"],
+    releases: [
+      {
+        title: "Junta Tus Cosas",
+        year: "2021",
+        roles: ["Producción", "Guitarras", "Teclados", "Grabación", "Mezcla", "Mastering"],
+      },
+      {
+        title: "Llamame por mi Nombre",
+        roles: ["Producción", "Guitarras", "Grabación", "Mezcla", "Mastering"],
+      },
+    ],
+  },
+  {
+    id: "franco-zamorano",
+    artist: "Franco Zamorano",
+    releases: [
+      {
+        title: "Producción",
+        roles: ["Producción", "Guitarras", "Grabación", "Mezcla"],
+      },
+    ],
   },
 ];
 
-export const OTROS_PROYECTOS: string[] = [
-  "Flor Albarracin y la Relampago",
-  "Programación Moby Dick Live Sessions 2025",
-  "Palermo Vintage — Muestras y Streaming",
-  "Sergio Rotman y Mario Siperman",
-  "Guillermo Vadalá",
-  "Zorrito Von Quintero (Lado U)",
-  "Pedro Aznar — Workshop EMBA",
-  "Música para documentales",
-  "Música para publicidades",
+// ─── COLABORACIONES ──────────────────────────────────────────────────────────
+export const COLABORACIONES: Colaboracion[] = [
+  { id: "moby-dick", text: "Programación · Moby Dick Live Sessions 2025" },
+  { id: "muelle-3", text: "Programación · Muelle 3, Punta del Este, Uruguay" },
+  { id: "palermo-vintage", text: "Palermo Vintage — Muestras y Producciones de Streaming" },
+  { id: "sergio-rotman", text: "Grabé guitarras para el disco de Sergio Rotman en el estudio de Mario Siperman" },
+  { id: "vadala", text: "Grabé guitarras junto a Guillermo Vadalá para el disco de Ger Kalinscky" },
+  { id: "zorrito", text: "En vivo junto al Zorrito Von Quintero y Jimmy Rip" },
+  { id: "lado-u", text: "Sesionista de Lado U, productora de espectáculos" },
+  { id: "audiovisual", text: "Música para documentales y publicidades" },
 ];
 
 // ─── BLOG / BITÁCORA ────────────────────────────────────────────────────────

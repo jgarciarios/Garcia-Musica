@@ -15,10 +15,11 @@ export default function Nav() {
   const [langOpen, setLangOpen] = useState(false);
 
   const LINKS = [
-    { id: "recorrido",       label: nav.recorrido },
-    { id: "pilares",         label: nav.pilares },
+    { id: "recorrido",       label: nav.trayectoria },
+    { id: "pilares",         label: nav.trabajo },
     { id: "discografia",     label: nav.discografia },
     { id: "producciones",    label: nav.producciones },
+    { id: "colaboraciones",  label: nav.colaboraciones },
     { id: "band-experience", label: nav.bandExperience },
     { id: "blog",            label: nav.blog },
     { id: "contacto",        label: nav.contacto },
@@ -40,12 +41,12 @@ export default function Nav() {
           García Música
         </button>
 
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-6">
           {LINKS.map(({ id, label }) => (
             <button
               key={id}
               onClick={() => go(id)}
-              className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer"
+              className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer"
             >
               {label}
             </button>

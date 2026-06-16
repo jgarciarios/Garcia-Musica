@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(vercel --version)",
+      "Bash(vercel link *)",
+      "Bash(vercel)",
+      "Bash(curl *)",
+      "Bash(lsof -ti:3000)",
+      "Bash(vercel --yes)"
+    ]
+  }
+}

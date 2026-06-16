@@ -4,6 +4,7 @@ import Recorrido from "./components/Recorrido";
 import Pilares from "./components/Pilares";
 import ProyectosProios from "./components/ProyectosProios";
 import Producciones from "./components/Producciones";
+import Colaboraciones from "./components/Colaboraciones";
 import BandExperience from "./components/BandExperience";
 import Blog from "./components/Blog";
 import ContactForm from "./components/ContactForm";
@@ -21,6 +22,7 @@ export default function App() {
           <Pilares />
           <ProyectosProios />
           <Producciones />
+          <Colaboraciones />
           <BandExperience />
           <Blog />
           <ContactForm />

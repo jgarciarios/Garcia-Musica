@@ -1,6 +1,10 @@
 import { motion } from "motion/react";
+import { FileText } from "lucide-react";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
+
+// Set this to the public URL of the PDF once uploaded
+const BAND_EXP_PDF_URL: string | null = null;
 
 export default function BandExperience() {
   const { lang } = useLang();
@@ -20,7 +24,7 @@ export default function BandExperience() {
             transition={{ duration: 0.6 }}
           >
             <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 block mb-4">
-              05 — {band.label}
+              {band.label}
             </span>
             <h2 className="font-display font-light text-black text-3xl md:text-4xl mb-3">
               {band.title}
@@ -34,9 +38,22 @@ export default function BandExperience() {
             <p className="font-display font-medium text-black text-base mb-8">
               {band.result}
             </p>
-            <p className="text-neutral-400 text-xs leading-relaxed">
+            <p className="text-neutral-400 text-xs leading-relaxed mb-8">
               {band.collab}
             </p>
+
+            {/* PDF download — shows when URL is set */}
+            {BAND_EXP_PDF_URL && (
+              <a
+                href={BAND_EXP_PDF_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-white bg-black px-5 py-3 hover:bg-[#7C3AED] transition-colors"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                {band.downloadPdf}
+              </a>
+            )}
           </motion.div>
 
           {/* Right: objectives */}

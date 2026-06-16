@@ -3,39 +3,46 @@ export type Lang = "es" | "fr" | "en";
 export const translations = {
   es: {
     nav: {
-      recorrido: "Recorrido",
-      pilares: "Trabajo",
-      discografia: "Discografía",
-      producciones: "Producciones",
+      trayectoria: "Trayectoria",
+      trabajo: "Áreas de Trabajo",
+      discografia: "Proyectos Propios",
+      producciones: "Otras Producciones",
+      colaboraciones: "Colaboraciones",
       bandExperience: "Band Experience",
       blog: "Bitácora",
       contacto: "Contacto",
     },
     hero: {
-      roles: "Producción · Composición · Guitarra · Docencia · Coaching",
+      roles: "Producción · Composición · Guitarra · Sesionista · Docencia · Coaching",
       tagline: "Más de 20 años construyendo música con identidad.",
       location: "Buenos Aires",
       cta: "Ver trabajo",
     },
     recorrido: {
-      label: "Recorrido",
+      label: "Trayectoria",
       title: "Trayectoria",
       philosophy: "La producción musical entendida como un proceso de desarrollo artístico. Cada canción contiene un potencial propio y atraviesa un recorrido hasta encontrar su mejor forma.",
+      expand: "Ver recorrido completo",
+      collapse: "Ocultar",
     },
     pilares: {
       label: "Áreas de Trabajo",
-      title: "Pilares",
+      title: "Áreas de Trabajo",
     },
     discografia: {
-      label: "Discografía",
-      title: "Producciones Propias",
+      label: "Proyectos Propios",
+      title: "Proyectos Propios",
       albums: "Álbumes",
       singles: "Singles",
       listen: "Escuchar en Spotify",
     },
     producciones: {
-      label: "Colaboraciones",
+      label: "Otras Producciones",
       title: "Otras Producciones",
+    },
+    colaboraciones: {
+      label: "Colaboraciones",
+      title: "Con quiénes he trabajado",
     },
     bandExp: {
       label: "Workshop Empresarial",
@@ -45,6 +52,7 @@ export const translations = {
       objectives: ["Escucha activa", "Liderazgo", "Coordinación", "Comunicación", "Creatividad", "Trabajo colaborativo"],
       result: "El objetivo: lograr sonar juntos.",
       collab: "En colaboración con Leopoldo Gozar / Palermo Vintage y Verónica Vera, Coach y Docente.",
+      downloadPdf: "Ver propuesta completa",
     },
     blog: {
       label: "Archivo Vivo",
@@ -68,39 +76,46 @@ export const translations = {
   },
   fr: {
     nav: {
-      recorrido: "Parcours",
-      pilares: "Travail",
-      discografia: "Discographie",
+      trayectoria: "Parcours",
+      trabajo: "Domaines",
+      discografia: "Projets",
       producciones: "Productions",
+      colaboraciones: "Collaborations",
       bandExperience: "Band Experience",
       blog: "Journal",
       contacto: "Contact",
     },
     hero: {
-      roles: "Production · Composition · Guitare · Enseignement · Coaching",
+      roles: "Production · Composition · Guitare · Sessions · Enseignement · Coaching",
       tagline: "Plus de 20 ans à construire une musique avec identité.",
       location: "Buenos Aires",
       cta: "Voir le travail",
     },
     recorrido: {
       label: "Parcours",
-      title: "Trajectoire",
+      title: "Parcours",
       philosophy: "La production musicale comprise comme un processus de développement artistique. Chaque chanson contient un potentiel propre et traverse un chemin jusqu'à trouver sa meilleure forme.",
+      expand: "Voir le parcours complet",
+      collapse: "Masquer",
     },
     pilares: {
       label: "Domaines de Travail",
-      title: "Piliers",
+      title: "Domaines de Travail",
     },
     discografia: {
-      label: "Discographie",
-      title: "Productions Propres",
+      label: "Projets Propres",
+      title: "Projets Propres",
       albums: "Albums",
       singles: "Singles",
       listen: "Écouter sur Spotify",
     },
     producciones: {
-      label: "Collaborations",
+      label: "Autres Productions",
       title: "Autres Productions",
+    },
+    colaboraciones: {
+      label: "Collaborations",
+      title: "Avec qui j'ai travaillé",
     },
     bandExp: {
       label: "Workshop d'Entreprise",
@@ -110,6 +125,7 @@ export const translations = {
       objectives: ["Écoute active", "Leadership", "Coordination", "Communication", "Créativité", "Travail collaboratif"],
       result: "L'objectif : jouer ensemble.",
       collab: "En collaboration avec Leopoldo Gozar / Palermo Vintage et Verónica Vera, Coach et Enseignante.",
+      downloadPdf: "Voir la proposition complète",
     },
     blog: {
       label: "Archive Vivante",
@@ -133,39 +149,46 @@ export const translations = {
   },
   en: {
     nav: {
-      recorrido: "Journey",
-      pilares: "Work",
-      discografia: "Discography",
+      trayectoria: "Journey",
+      trabajo: "Work",
+      discografia: "Projects",
       producciones: "Productions",
+      colaboraciones: "Collaborations",
       bandExperience: "Band Experience",
       blog: "Journal",
       contacto: "Contact",
     },
     hero: {
-      roles: "Production · Composition · Guitar · Teaching · Coaching",
+      roles: "Production · Composition · Guitar · Session · Teaching · Coaching",
       tagline: "Over 20 years building music with identity.",
       location: "Buenos Aires",
       cta: "See work",
     },
     recorrido: {
       label: "Journey",
-      title: "Career",
+      title: "Journey",
       philosophy: "Music production understood as a process of artistic development. Each song holds its own potential and travels a path until it finds its best form.",
+      expand: "See full journey",
+      collapse: "Hide",
     },
     pilares: {
       label: "Areas of Work",
-      title: "Pillars",
+      title: "Areas of Work",
     },
     discografia: {
-      label: "Discography",
-      title: "Own Productions",
+      label: "Own Projects",
+      title: "Own Projects",
       albums: "Albums",
       singles: "Singles",
       listen: "Listen on Spotify",
     },
     producciones: {
-      label: "Collaborations",
+      label: "Other Productions",
       title: "Other Productions",
+    },
+    colaboraciones: {
+      label: "Collaborations",
+      title: "Who I've worked with",
     },
     bandExp: {
       label: "Corporate Workshop",
@@ -175,6 +198,7 @@ export const translations = {
       objectives: ["Active listening", "Leadership", "Coordination", "Communication", "Creativity", "Collaborative work"],
       result: "The goal: to play together.",
       collab: "In collaboration with Leopoldo Gozar / Palermo Vintage and Verónica Vera, Coach and Teacher.",
+      downloadPdf: "See full proposal",
     },
     blog: {
       label: "Living Archive",
@@ -197,4 +221,3 @@ export const translations = {
     },
   },
 };
-
