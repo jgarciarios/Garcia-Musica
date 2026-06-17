@@ -6,6 +6,7 @@ import ProyectosProios from "./components/ProyectosProios";
 import Producciones from "./components/Producciones";
 import Colaboraciones from "./components/Colaboraciones";
 import YouTubeSection from "./components/YouTubeSection";
+import ShowsEnVivo from "./components/ShowsEnVivo";
 import BandExperience from "./components/BandExperience";
 import Blog from "./components/Blog";
 import ContactForm from "./components/ContactForm";
@@ -25,6 +26,7 @@ export default function App() {
           <Producciones />
           <Colaboraciones />
           <YouTubeSection />
+          <ShowsEnVivo />
           <BandExperience />
           <Blog />
           <ContactForm />

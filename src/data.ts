@@ -144,10 +144,10 @@ export const PILARES: Pilar[] = [
     accent: "orange",
   },
   {
-    id: "shows",
-    title: "Shows en Vivo",
-    description: "Performances con energía, presencia escénica y conexión genuina con el público. Años de experiencia en escenarios de toda escala.",
-    tags: ["Conciertos", "Festivales", "Eventos"],
+    id: "programacion",
+    title: "Programación Musical",
+    description: "Dirección y programación de shows en vivo para bares, restaurantes y eventos. Moby Dick Live Sessions · Muelle 3, Punta del Este (Uruguay). Formación en Protocolo y Ceremonial (2000–2001).",
+    tags: ["Bares", "Restaurantes", "Eventos"],
     accent: "green",
   },
 ];
@@ -377,6 +377,60 @@ export const COLABORACIONES: Colaboracion[] = [
   { id: "zorrito", text: "En vivo junto al Zorrito Von Quintero y Jimmy Rip" },
   { id: "lado-u", text: "Sesionista de Lado U, productora de espectáculos" },
   { id: "audiovisual", text: "Música para documentales y publicidades" },
+];
+
+// ─── SHOWS EN VIVO ──────────────────────────────────────────────────────────
+export interface ShowProposal {
+  id: string;
+  name: string;
+  genre: string;
+  description: string;
+  accent: "violet" | "orange" | "green";
+}
+
+export const SHOWS_EN_VIVO: ShowProposal[] = [
+  {
+    id: "press-start",
+    name: "PRESS START",
+    genre: "Rock Internacional",
+    description: "Un recorrido por los clásicos del rock internacional: The Beatles, Rolling Stones, U2, Foo Fighters, Radiohead y más. Alta energía, nostalgia y canciones que todos conocen.",
+    accent: "violet",
+  },
+  {
+    id: "handle",
+    name: "HANDLE",
+    genre: "80s · 90s Rock & Pop",
+    description: "Lo mejor del pop y rock de los 80s y 90s: Depeche Mode, The Cure, Duran Duran, Alanis Morissette, Nirvana. Para fiestas temáticas y eventos corporativos.",
+    accent: "orange",
+  },
+  {
+    id: "portastudio",
+    name: "PORTASTUDIO",
+    genre: "Rock Argentino",
+    description: "Un homenaje al rock nacional. Charly García, Fito Páez, Serú Girán, Los Redonditos de Ricota, Divididos, Soda Stereo.",
+    accent: "green",
+  },
+  {
+    id: "lounge-service",
+    name: "LOUNGE SERVICE",
+    genre: "Bossa & Jazz",
+    description: "Música de ambiente sofisticado. Bossa nova, jazz standards y MPB para cócteles, inauguraciones, restaurants de alta gama y eventos corporativos.",
+    accent: "violet",
+  },
+  {
+    id: "dumont",
+    name: "DUMONT",
+    genre: "Clásicos Franceses",
+    description: "Jacques Brel, Édith Piaf, Serge Gainsbourg, Georges Brassens. Canciones francesas icónicas en formato dúo o trío. Ideal para embajadas, institutos culturales y eventos temáticos.",
+    accent: "orange",
+  },
+  {
+    id: "duo-garcia",
+    name: "DUO GARCIA",
+    genre: "Blues · R&B · Oldies",
+    description: "Un dúo íntimo de blues, rhythm & blues y oldies americanos. Versátil y atmosférico, adaptable a espacios íntimos o como apertura de eventos más grandes.",
+    accent: "green",
+  },
 ];
 
 // ─── YOUTUBE VIDEOS ─────────────────────────────────────────────────────────

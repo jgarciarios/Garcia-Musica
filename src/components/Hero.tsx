@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
 
+
 // Cassette SVG with animated reels
 function Cassette() {
   return (
@@ -33,33 +34,25 @@ function Cassette() {
         <rect x="68" y="89" width="64" height="14" rx="1" fill="#2a2a2a" />
         <path d="M68 96 Q100 92 132 96" stroke="#444" strokeWidth="1" fill="none" />
 
-        {/* Left reel hub */}
-        <motion.g
-          animate={{ rotate: 360 }}
-          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-          style={{ transformOrigin: "82px 96px" }}
-        >
+        {/* Left reel hub — static */}
+        <g style={{ transformOrigin: "82px 96px" }}>
           <circle cx="82" cy="96" r="10" fill="#333" />
           <circle cx="82" cy="96" r="4" fill="#555" />
           <line x1="82" y1="86" x2="82" y2="92" stroke="#666" strokeWidth="1.5" />
           <line x1="82" y1="100" x2="82" y2="106" stroke="#666" strokeWidth="1.5" />
           <line x1="72" y1="96" x2="78" y2="96" stroke="#666" strokeWidth="1.5" />
           <line x1="86" y1="96" x2="92" y2="96" stroke="#666" strokeWidth="1.5" />
-        </motion.g>
+        </g>
 
-        {/* Right reel hub */}
-        <motion.g
-          animate={{ rotate: 360 }}
-          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-          style={{ transformOrigin: "118px 96px" }}
-        >
+        {/* Right reel hub — static */}
+        <g style={{ transformOrigin: "118px 96px" }}>
           <circle cx="118" cy="96" r="10" fill="#333" />
           <circle cx="118" cy="96" r="4" fill="#555" />
           <line x1="118" y1="86" x2="118" y2="92" stroke="#666" strokeWidth="1.5" />
           <line x1="118" y1="100" x2="118" y2="106" stroke="#666" strokeWidth="1.5" />
           <line x1="108" y1="96" x2="114" y2="96" stroke="#666" strokeWidth="1.5" />
           <line x1="122" y1="96" x2="128" y2="96" stroke="#666" strokeWidth="1.5" />
-        </motion.g>
+        </g>
 
         {/* Side holes */}
         <circle cx="22" cy="96" r="6" fill="#0f0f0f" />
