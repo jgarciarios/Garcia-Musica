@@ -13,41 +13,8 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 export default function YouTubeSection() {
-  // Shuffle once per mount/refresh — different order every visit
+  // Shuffle once per mount/refresh — 3 videos random de los 6 seleccionados
   const videos = useMemo(() => shuffleArray(YOUTUBE_VIDEO_IDS).slice(0, 3), []);
-
-  // Don't render if no real IDs are configured yet
-  const hasRealIds = videos.some(id => id !== "VIDEO_ID_1" && id !== "VIDEO_ID_2" && id !== "VIDEO_ID_3");
-  if (!hasRealIds) {
-    return (
-      <section id="videos" className="py-24 md:py-36 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 block mb-4">
-              Videos
-            </span>
-            <h2 className="font-display font-light text-black text-3xl md:text-4xl">
-              En YouTube
-            </h2>
-          </motion.div>
-          <div className="border border-dashed border-neutral-200 rounded p-12 text-center">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-300 mb-2">
-              Sección de videos
-            </p>
-            <p className="text-neutral-400 text-sm">
-              Agregá los IDs de tus videos en <code className="text-neutral-600">src/data.ts</code> → <code className="text-neutral-600">YOUTUBE_VIDEO_IDS</code>
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="videos" className="py-24 md:py-36 bg-white">

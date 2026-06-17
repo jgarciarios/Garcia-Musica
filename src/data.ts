@@ -380,12 +380,52 @@ export const COLABORACIONES: Colaboracion[] = [
 ];
 
 // ─── YOUTUBE VIDEOS ─────────────────────────────────────────────────────────
-// Replace these IDs with real video IDs from @garciamusicaYT
-// To get an ID: open a video on YouTube → the URL is youtube.com/watch?v=ID_HERE
+// Seleccionados para la web — se muestran 3 random por visita
 export const YOUTUBE_VIDEO_IDS: string[] = [
-  "VIDEO_ID_1", // e.g. "dQw4w9WgXcQ"
-  "VIDEO_ID_2",
-  "VIDEO_ID_3",
+  "srsOWfnUIrM",
+  "VFmbN1U4h6c",
+  "M73R2JyjYI0",
+  "CXLTKQOdEWM",
+  "MXfbqAlSUaw",
+  "sca4gym3o-o",
+];
+
+// Producciones
+export const YOUTUBE_PRODUCCIONES: string[] = [
+  "Bvqr_xvTDR8",
+  "IkcgFUaXa3M",
+  "VTNvOjk_VU4",
+  "LdStuGNVrWs",
+  "y3JM-wH7PjM",
+  "VLvXKl0SdZY",
+  "by5MwbEsvyY",
+  "6GMluBv46Ks",
+  "-7hKcx_w_vQ",
+  "iS_6Nw5oPrM",
+  "aoz8B7R3S3Y",
+];
+
+// Grabación, Mezcla, Mastering
+export const YOUTUBE_GRABACION: string[] = [
+  "-wyJyUWi48I",
+  "-7hKcx_w_vQ",
+];
+
+// Colaboraciones
+export const YOUTUBE_COLABORACIONES: string[] = [
+  "WW7PSkibk38",
+  "e29u3aCaa44",
+  "Ql1_ANgInDM",
+  "g84DaTBdQfk",
+  "VBCLVj7Q4Vs",
+  "VdgV8Fh1zfU",
+  "-3vrnJh-NMw",
+  "VWCFWRgZUPk",
+  "jlIauHRnrs8",
+  "pxl4XthFD8E",
+  "F7tHYc52Ybo",
+  "0H5M4u-ib7c",
+  "3JT0sOnE0HM",
 ];
 
 // ─── BLOG / BITÁCORA ────────────────────────────────────────────────────────
