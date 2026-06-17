@@ -15,7 +15,7 @@ export default function Footer() {
 
         <div className="flex items-center gap-5">
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/garciamusica"
             target="_blank"
             rel="noreferrer"
             className="font-mono text-[10px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors"
@@ -23,7 +23,7 @@ export default function Footer() {
             Instagram
           </a>
           <a
-            href="https://youtube.com"
+            href="https://youtube.com/@garciamusicaYT"
             target="_blank"
             rel="noreferrer"
             className="font-mono text-[10px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors"

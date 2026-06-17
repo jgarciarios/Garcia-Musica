@@ -10,11 +10,31 @@ export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
+  // ⚠️  Reemplazá FORMSPREE_FORM_ID con el ID de tu formulario en formspree.io
+  // Pasos: 1) Crear cuenta en formspree.io  2) New Form → apuntar a garciarios@gmail.com
+  //         3) Copiar el ID (formato: xxxxxabc) y pegarlo aquí abajo
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_FORM_ID";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    await new Promise(r => setTimeout(r, 1200));
-    setStatus("done");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+      });
+      if (res.ok) {
+        setStatus("done");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setStatus("idle");
+        alert("Error al enviar. Por favor intentá de nuevo.");
+      }
+    } catch {
+      setStatus("idle");
+      alert("Error de conexión. Por favor intentá de nuevo.");
+    }
   };
 
   return (

@@ -29,6 +29,7 @@ export interface Proyecto {
   name: string;
   role: string;
   spotifyUrl?: string;
+  externalUrl?: string; // archive / project page link for "Ver más..."
   releases: Release[];
 }
 
@@ -158,6 +159,7 @@ export const PROYECTOS: Proyecto[] = [
     name: "Falsos Clones",
     role: "Cantante · Guitarrista · Co-productor · Co-autor",
     spotifyUrl: "https://open.spotify.com/artist/1IU4Uk9Gw2ziG1WpjtUe9o",
+    externalUrl: "https://open.spotify.com/artist/1IU4Uk9Gw2ziG1WpjtUe9o",
     releases: [
       {
         id: "antibosteso",
@@ -263,14 +265,14 @@ export const PROYECTOS: Proyecto[] = [
   {
     id: "fruto-gris",
     name: "Fruto Gris",
-    role: "Guitarras · Voces · Producción",
+    role: "Guitarras · Voces",
     releases: [
       {
         id: "fruto-gris-releases",
-        title: "Producciones",
+        title: "Lanzamientos",
         year: "—",
         type: "Álbum",
-        roles: ["Guitarras", "Voces", "Producción"],
+        roles: ["Guitarras", "Voces"],
       },
     ],
   },
@@ -371,10 +373,19 @@ export const COLABORACIONES: Colaboracion[] = [
   { id: "muelle-3", text: "Programación · Muelle 3, Punta del Este, Uruguay" },
   { id: "palermo-vintage", text: "Palermo Vintage — Muestras y Producciones de Streaming" },
   { id: "sergio-rotman", text: "Grabé guitarras para el disco de Sergio Rotman en el estudio de Mario Siperman" },
-  { id: "vadala", text: "Grabé guitarras junto a Guillermo Vadalá para el disco de Ger Kalinscky" },
+  { id: "vadala", text: "Grabé guitarras para el disco de Ger Kalinscky, junto a músicos como Guillermo Vadalá." },
   { id: "zorrito", text: "En vivo junto al Zorrito Von Quintero y Jimmy Rip" },
   { id: "lado-u", text: "Sesionista de Lado U, productora de espectáculos" },
   { id: "audiovisual", text: "Música para documentales y publicidades" },
+];
+
+// ─── YOUTUBE VIDEOS ─────────────────────────────────────────────────────────
+// Replace these IDs with real video IDs from @garciamusicaYT
+// To get an ID: open a video on YouTube → the URL is youtube.com/watch?v=ID_HERE
+export const YOUTUBE_VIDEO_IDS: string[] = [
+  "VIDEO_ID_1", // e.g. "dQw4w9WgXcQ"
+  "VIDEO_ID_2",
+  "VIDEO_ID_3",
 ];
 
 // ─── BLOG / BITÁCORA ────────────────────────────────────────────────────────

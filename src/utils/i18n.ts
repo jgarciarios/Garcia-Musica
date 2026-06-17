@@ -5,7 +5,7 @@ export const translations = {
     nav: {
       trayectoria: "Trayectoria",
       trabajo: "Áreas de Trabajo",
-      discografia: "Proyectos Propios",
+      discografia: "Proyectos",
       producciones: "Otras Producciones",
       colaboraciones: "Colaboraciones",
       bandExperience: "Band Experience",
@@ -30,11 +30,12 @@ export const translations = {
       title: "Áreas de Trabajo",
     },
     discografia: {
-      label: "Proyectos Propios",
-      title: "Proyectos Propios",
+      label: "Proyectos",
+      title: "Proyectos",
       albums: "Álbumes",
       singles: "Singles",
       listen: "Escuchar en Spotify",
+      verMas: "Ver más...",
     },
     producciones: {
       label: "Otras Producciones",
@@ -103,11 +104,12 @@ export const translations = {
       title: "Domaines de Travail",
     },
     discografia: {
-      label: "Projets Propres",
-      title: "Projets Propres",
+      label: "Projets",
+      title: "Projets",
       albums: "Albums",
       singles: "Singles",
       listen: "Écouter sur Spotify",
+      verMas: "Voir plus...",
     },
     producciones: {
       label: "Autres Productions",
@@ -176,11 +178,12 @@ export const translations = {
       title: "Areas of Work",
     },
     discografia: {
-      label: "Own Projects",
-      title: "Own Projects",
+      label: "Projects",
+      title: "Projects",
       albums: "Albums",
       singles: "Singles",
       listen: "Listen on Spotify",
+      verMas: "See more...",
     },
     producciones: {
       label: "Other Productions",

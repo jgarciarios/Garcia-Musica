@@ -56,6 +56,17 @@ export default function ProyectosProios() {
                     </p>
                   </div>
                   <div className="flex items-center gap-4 flex-shrink-0">
+                    {proyecto.externalUrl && (
+                      <a
+                        href={proyecto.externalUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="font-mono text-[10px] uppercase tracking-widest text-[#7C3AED] hover:underline flex items-center gap-1"
+                      >
+                        {disc.verMas} <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
                     {proyecto.spotifyUrl && (
                       <a
                         href={proyecto.spotifyUrl}
