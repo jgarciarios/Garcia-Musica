@@ -13,7 +13,7 @@ export default function ContactForm() {
   // ⚠️  Reemplazá FORMSPREE_FORM_ID con el ID de tu formulario en formspree.io
   // Pasos: 1) Crear cuenta en formspree.io  2) New Form → apuntar a garciarios@gmail.com
   //         3) Copiar el ID (formato: xxxxxabc) y pegarlo aquí abajo
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_FORM_ID";
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mpqeenly";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
