@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
 
@@ -151,6 +151,10 @@ export default function Hero() {
   const { lang } = useLang();
   const hero = translations[lang].hero;
 
+  // Parallax: portastudio drifts upward as user scrolls down
+  const { scrollY } = useScroll();
+  const portastudioY = useTransform(scrollY, [0, 600], [0, -45]);
+
   const go = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -159,14 +163,18 @@ export default function Hero() {
     <section className="min-h-screen flex flex-col justify-center pt-14 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10 w-full py-24 md:py-32">
 
-        {/* Cassette + accent bar row */}
+        {/* Portastudio + accent bar row */}
         <div className="flex items-end gap-8 mb-10">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            <Cassette />
+          {/* Outer div carries scroll parallax; inner div carries entrance + hover */}
+          <motion.div style={{ y: portastudioY }}>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              whileHover={{ scale: 1.025, transition: { duration: 0.4 } }}
+            >
+              <Cassette />
+            </motion.div>
           </motion.div>
 
           {/* Accent bar */}
@@ -188,17 +196,40 @@ export default function Hero() {
           {hero.roles}
         </motion.p>
 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="font-display font-light text-black leading-[1.05] mb-6"
+        {/* Name — staggered word reveal */}
+        <h1
+          className="font-display font-light text-black leading-[1.05] mb-6 overflow-hidden"
           style={{ fontSize: "clamp(2.4rem, 6vw, 5.5rem)" }}
         >
-          Christian<br />
-          <span className="font-semibold">García Ríos</span>
-        </motion.h1>
+          {/* Line 1: "Christian" — characters stagger in */}
+          <span className="block overflow-hidden">
+            {"Christian".split("").map((ch, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: "1em" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.04, ease: "easeOut" }}
+                className="inline-block"
+              >
+                {ch}
+              </motion.span>
+            ))}
+          </span>
+          {/* Line 2: "García Ríos" — slightly offset stagger */}
+          <span className="block overflow-hidden font-semibold">
+            {"García Ríos".split("").map((ch, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: "1em" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.55 + i * 0.04, ease: "easeOut" }}
+                className="inline-block"
+              >
+                {ch === " " ? " " : ch}
+              </motion.span>
+            ))}
+          </span>
+        </h1>
 
         {/* Tagline */}
         <motion.p
@@ -220,25 +251,38 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="flex items-center gap-6"
         >
-          <button
+          <motion.button
             onClick={() => go("pilares")}
-            className="font-mono text-[11px] uppercase tracking-widest text-white bg-black px-6 py-3 hover:bg-[#7C3AED] transition-colors cursor-pointer"
+            whileHover={{ scale: 1.03, boxShadow: "0 0 22px rgba(124,58,237,0.28)" }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ duration: 0.18 }}
+            className="font-mono text-[11px] uppercase tracking-widest text-white bg-black px-6 py-3 hover:bg-[#7C3AED] transition-colors cursor-pointer btn-primary"
           >
             {hero.cta}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={() => go("contacto")}
+            whileHover={{ x: 3 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.15 }}
             className="font-mono text-[11px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer"
           >
             Contacto →
-          </button>
+          </motion.button>
         </motion.div>
 
-        {/* Accent dots */}
+        {/* Accent dots — staggered pulse */}
         <div className="flex items-center gap-2 mt-16">
-          <span className="w-2 h-2 rounded-full bg-[#7C3AED]" />
-          <span className="w-2 h-2 rounded-full bg-[#EA580C]" />
-          <span className="w-2 h-2 rounded-full bg-[#16A34A]" />
+          {(["#7C3AED","#EA580C","#16A34A"] as const).map((color, i) => (
+            <motion.span
+              key={color}
+              className="w-2 h-2 rounded-full"
+              style={{ backgroundColor: color }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.9 + i * 0.1, type: "spring" }}
+            />
+          ))}
         </div>
       </div>
     </section>
