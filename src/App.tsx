@@ -1,5 +1,4 @@
 import ScrollProgress from "./components/ScrollProgress";
-import CustomCursor from "./components/CustomCursor";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Recorrido from "./components/Recorrido";
@@ -19,7 +18,6 @@ export default function App() {
   return (
     <LangProvider>
       <ScrollProgress />
-      <CustomCursor />
       <div className="min-h-screen bg-white text-black">
         <Nav />
         <main>

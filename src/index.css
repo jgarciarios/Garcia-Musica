@@ -43,12 +43,6 @@
 .tag-orange  { background: #EA580C14; color: #EA580C; border: 1px solid #EA580C28; }
 .tag-green   { background: #16A34A14; color: #16A34A; border: 1px solid #16A34A28; }
 
-/* ── Custom cursor ── */
-.custom-cursor-active,
-.custom-cursor-active * {
-  cursor: none !important;
-}
-
 /* ── Section heading underline slide-in ── */
 .section-heading {
   position: relative;
