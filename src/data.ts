@@ -407,7 +407,7 @@ export const SHOWS_EN_VIVO: ShowProposal[] = [
     id: "portastudio",
     name: "PORTASTUDIO",
     genre: "Rock Argentino",
-    description: "Un homenaje al rock nacional. Charly García, Fito Páez, Serú Girán, Los Redonditos de Ricota, Divididos, Soda Stereo.",
+    description: "El nombre viene de la grabadora multipista de cassette que usaban los grandes: en esas máquinas nacieron las demos del rock argentino. El show es eso: Charly García, Fito Páez, Serú Girán, Los Redonditos, Divididos, Soda Stereo. Directo, sin adornos, con toda la intensidad del original.",
     accent: "green",
   },
   {

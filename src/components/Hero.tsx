@@ -3,68 +3,145 @@ import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
 
 
-// Cassette SVG with animated reels
+// Portastudio — Tascam-style 4-track cassette recorder
 function Cassette() {
+  const CH_X  = [10, 52, 94, 136] as const;
+  const CH_COLORS = ["#7C3AED", "#EA580C", "#16A34A", "#7C3AED"] as const;
+  const FADER_Y   = [108, 122, 114, 128] as const;
+
   return (
     <div className="relative select-none" aria-hidden="true">
       <svg
-        viewBox="0 0 200 130"
+        viewBox="0 0 278 168"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-48 md:w-64 opacity-60"
+        className="w-56 md:w-80 opacity-75"
       >
-        {/* Body */}
-        <rect x="4" y="10" width="192" height="110" rx="10" fill="#0f0f0f" />
-        <rect x="12" y="18" width="176" height="94" rx="7" fill="#1a1a1a" />
+        {/* ── BODY ── */}
+        <rect x="2" y="2" width="274" height="164" rx="10" fill="#0a0a0a" />
+        <rect x="7" y="7" width="264" height="154" rx="7" fill="#181818" />
 
-        {/* Label area */}
-        <rect x="36" y="22" width="128" height="56" rx="4" fill="#f5f5f5" />
+        {/* ── VU METER STRIP ── */}
+        <rect x="9" y="10" width="172" height="26" rx="3" fill="#111" />
+        {/* L row */}
+        {[9,9,9,9,9,7,7,7,5,5,3,3,2,2,1,1].map((h, i) => (
+          <rect key={`vul${i}`} x={13 + i * 10} y={14} width={7} height={h} rx={1}
+            fill={i < 9 ? "#16A34A" : i < 13 ? "#EA580C" : "#dc2626"}
+            opacity={Math.max(0.12, 1 - i * 0.052)} />
+        ))}
+        {/* R row */}
+        {[9,9,9,9,9,9,7,7,7,5,3,2,1,1].map((h, i) => (
+          <rect key={`vur${i}`} x={13 + i * 10} y={25} width={7} height={h} rx={1}
+            fill={i < 10 ? "#16A34A" : "#EA580C"}
+            opacity={Math.max(0.12, 1 - i * 0.055)} />
+        ))}
 
-        {/* Label text lines */}
-        <rect x="52" y="34" width="96" height="3" rx="1.5" fill="#7C3AED" opacity="0.7" />
-        <rect x="60" y="42" width="80" height="2" rx="1" fill="#EA580C" opacity="0.5" />
-        <rect x="64" y="49" width="72" height="2" rx="1" fill="#16A34A" opacity="0.5" />
-        <rect x="68" y="56" width="64" height="2" rx="1" fill="#999" opacity="0.4" />
-        <rect x="72" y="63" width="56" height="2" rx="1" fill="#999" opacity="0.3" />
+        {/* ── 4 CHANNEL STRIPS ── */}
+        {CH_X.map((cx, ch) => (
+          <g key={`ch${ch}`}>
+            <rect x={cx} y={40} width="39" height="118" rx="3" fill="#141414" />
 
-        {/* Window cutout */}
-        <rect x="60" y="84" width="80" height="24" rx="3" fill="#0f0f0f" />
+            {/* Channel label bar */}
+            <rect x={cx + 11} y={43} width={17} height={5} rx={1} fill="#1e1e1e" />
 
-        {/* Tape */}
-        <rect x="68" y="89" width="64" height="14" rx="1" fill="#2a2a2a" />
-        <path d="M68 96 Q100 92 132 96" stroke="#444" strokeWidth="1" fill="none" />
+            {/* Gain knob */}
+            <circle cx={cx + 11} cy={59} r={7} fill="#202020" stroke="#3a3a3a" strokeWidth={1.5} />
+            <circle cx={cx + 11} cy={59} r={2.5} fill="#3a3a3a" />
+            <line x1={cx + 11} y1={52} x2={cx + 11} y2={56.5} stroke="#777" strokeWidth={1.5} strokeLinecap="round" />
 
-        {/* Left reel hub — static */}
-        <g style={{ transformOrigin: "82px 96px" }}>
-          <circle cx="82" cy="96" r="10" fill="#333" />
-          <circle cx="82" cy="96" r="4" fill="#555" />
-          <line x1="82" y1="86" x2="82" y2="92" stroke="#666" strokeWidth="1.5" />
-          <line x1="82" y1="100" x2="82" y2="106" stroke="#666" strokeWidth="1.5" />
-          <line x1="72" y1="96" x2="78" y2="96" stroke="#666" strokeWidth="1.5" />
-          <line x1="86" y1="96" x2="92" y2="96" stroke="#666" strokeWidth="1.5" />
-        </g>
+            {/* Pan knob */}
+            <circle cx={cx + 27} cy={59} r={5} fill="#202020" stroke="#333" strokeWidth={1.2} />
+            <circle cx={cx + 27} cy={59} r={1.8} fill="#3a3a3a" />
 
-        {/* Right reel hub — static */}
-        <g style={{ transformOrigin: "118px 96px" }}>
-          <circle cx="118" cy="96" r="10" fill="#333" />
-          <circle cx="118" cy="96" r="4" fill="#555" />
-          <line x1="118" y1="86" x2="118" y2="92" stroke="#666" strokeWidth="1.5" />
-          <line x1="118" y1="100" x2="118" y2="106" stroke="#666" strokeWidth="1.5" />
-          <line x1="108" y1="96" x2="114" y2="96" stroke="#666" strokeWidth="1.5" />
-          <line x1="122" y1="96" x2="128" y2="96" stroke="#666" strokeWidth="1.5" />
-        </g>
+            {/* EQ section — 3 tiny knobs on track lines */}
+            {[72, 79, 86].map((y, qi) => (
+              <g key={qi}>
+                <rect x={cx + 5} y={y} width={29} height={1.5} rx={0.75} fill="#262626" />
+                <circle cx={cx + 19} cy={y + 0.75} r={3.5} fill="#1c1c1c" stroke="#2e2e2e" strokeWidth={1} />
+              </g>
+            ))}
 
-        {/* Side holes */}
-        <circle cx="22" cy="96" r="6" fill="#0f0f0f" />
-        <circle cx="178" cy="96" r="6" fill="#0f0f0f" />
-        <circle cx="22" cy="96" r="3" fill="#333" />
-        <circle cx="178" cy="96" r="3" fill="#333" />
+            {/* Fader track */}
+            <rect x={cx + 17} y={92} width={5} height={56} rx={2.5} fill="#0c0c0c" />
 
-        {/* Bottom notches */}
-        <rect x="40" y="112" width="12" height="5" rx="1" fill="#0a0a0a" />
-        <rect x="74" y="112" width="12" height="5" rx="1" fill="#0a0a0a" />
-        <rect x="114" y="112" width="12" height="5" rx="1" fill="#0a0a0a" />
-        <rect x="148" y="112" width="12" height="5" rx="1" fill="#0a0a0a" />
+            {/* Fader handle */}
+            <rect x={cx + 10} y={FADER_Y[ch]} width={19} height={10} rx={2.5} fill={CH_COLORS[ch]} />
+            <line
+              x1={cx + 10} y1={FADER_Y[ch] + 5}
+              x2={cx + 29} y2={FADER_Y[ch] + 5}
+              stroke="rgba(255,255,255,0.12)" strokeWidth={0.8}
+            />
+          </g>
+        ))}
+
+        {/* ── MASTER SECTION (right panel) ── */}
+        <rect x="183" y="10" width="90" height="148" rx="4" fill="#141414" />
+
+        {/* Cassette window */}
+        <rect x="187" y="14" width="82" height="60" rx="4" fill="#0a0a0a" />
+        <rect x="190" y="17" width="76" height="54" rx="2" fill="#0d0d0d" stroke="#222" strokeWidth={1} />
+
+        {/* Left reel */}
+        <circle cx="213" cy="44" r="17" fill="#191919" stroke="#2c2c2c" strokeWidth={1.5} />
+        <circle cx="213" cy="44" r="7"  fill="#111" stroke="#393939" strokeWidth={1.2} />
+        <circle cx="213" cy="44" r="3"  fill="#444" />
+        <line x1="213" y1="27" x2="213" y2="37" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
+        <line x1="213" y1="51" x2="213" y2="61" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
+        <line x1="196" y1="44" x2="206" y2="44" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
+        <line x1="220" y1="44" x2="230" y2="44" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
+
+        {/* Right reel */}
+        <circle cx="251" cy="44" r="17" fill="#191919" stroke="#2c2c2c" strokeWidth={1.5} />
+        <circle cx="251" cy="44" r="7"  fill="#111" stroke="#393939" strokeWidth={1.2} />
+        <circle cx="251" cy="44" r="3"  fill="#444" />
+        <line x1="251" y1="27" x2="251" y2="37" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
+        <line x1="251" y1="51" x2="251" y2="61" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
+        <line x1="234" y1="44" x2="244" y2="44" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
+        <line x1="258" y1="44" x2="268" y2="44" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
+
+        {/* Tape path between reels */}
+        <path d="M213 61 Q232 66 251 61" fill="none" stroke="#2c2c2c" strokeWidth={1.2} />
+
+        {/* Transport buttons */}
+        {/* REW */}
+        <rect x="187" y="80" width="13" height="9" rx="2" fill="#282828" />
+        <path d="M196 84.5 L192 82 L192 87 Z" fill="#555" />
+        <path d="M193 84.5 L189.5 82 L189.5 87 Z" fill="#555" />
+        {/* PLAY */}
+        <rect x="203" y="80" width="13" height="9" rx="2" fill="#16A34A" opacity={0.75} />
+        <path d="M207 82.5 L207 87.5 L213 85 Z" fill="rgba(255,255,255,0.6)" />
+        {/* REC */}
+        <rect x="219" y="80" width="13" height="9" rx="2" fill="#dc2626" opacity={0.8} />
+        <circle cx="225.5" cy="84.5" r="2.5" fill="rgba(255,255,255,0.5)" />
+        {/* STOP */}
+        <rect x="235" y="80" width="13" height="9" rx="2" fill="#282828" />
+        <rect x="238.5" y="82.5" width="6" height="5" rx="1" fill="#555" />
+        {/* FF */}
+        <rect x="251" y="80" width="13" height="9" rx="2" fill="#282828" />
+        <path d="M254 84.5 L258 82 L258 87 Z" fill="#555" />
+        <path d="M257 84.5 L261 82 L261 87 Z" fill="#555" />
+
+        {/* Master volume / aux knobs */}
+        <circle cx="197" cy="101" r="9" fill="#1e1e1e" stroke="#333" strokeWidth={1.5} />
+        <circle cx="197" cy="101" r="3.5" fill="#333" />
+        <line x1="197" y1="92" x2="197" y2="97.5" stroke="#666" strokeWidth={1.5} strokeLinecap="round" />
+
+        <circle cx="197" cy="122" r="6.5" fill="#1e1e1e" stroke="#2e2e2e" strokeWidth={1.2} />
+        <circle cx="197" cy="122" r="2"  fill="#333" />
+
+        <circle cx="197" cy="138" r="5"   fill="#1e1e1e" stroke="#2e2e2e" strokeWidth={1} />
+
+        {/* Master fader track */}
+        <rect x="227" y="96" width="5" height="56" rx="2.5" fill="#0c0c0c" />
+        {/* Master fader handle */}
+        <rect x="219" y="115" width="21" height="12" rx="3" fill="#555" />
+        <line x1="219" y1="121" x2="240" y2="121" stroke="rgba(255,255,255,0.1)" strokeWidth={0.8} />
+
+        {/* Bottom label strip */}
+        <rect x="9" y="158" width="172" height="5" rx="1.5" fill="#111" />
+        <rect x="13" y="159" width="22" height="3" rx="1" fill="#1e1e1e" />
+        <rect x="39" y="159" width="16" height="3" rx="1" fill="#1e1e1e" />
+        <rect x="59" y="159" width="10" height="3" rx="1" fill="#1e1e1e" />
       </svg>
     </div>
   );
