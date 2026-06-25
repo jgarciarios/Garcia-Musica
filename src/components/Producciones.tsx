@@ -4,6 +4,7 @@ import { ChevronDown, ExternalLink } from "lucide-react";
 import { PRODUCCIONES } from "../data";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
+import SectionHeader from "./SectionHeader";
 
 export default function Producciones() {
   const { lang } = useLang();
@@ -16,17 +17,7 @@ export default function Producciones() {
     <section id="producciones" className="py-24 md:py-36 bg-neutral-50">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl">
-            {prod.title}
-          </h2>
-        </motion.div>
+        <SectionHeader title={prod.title} />
 
         <div className="space-y-px bg-neutral-100">
           {PRODUCCIONES.map((p) => {

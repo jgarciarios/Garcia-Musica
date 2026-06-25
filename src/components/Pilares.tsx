@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { PILARES } from "../data";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
+import SectionHeader from "./SectionHeader";
 
 const ACCENT: Record<string, string> = {
   violet: "#7C3AED",
@@ -22,17 +23,7 @@ export default function Pilares() {
     <section id="pilares" className="py-24 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl">
-            {pil.title}
-          </h2>
-        </motion.div>
+        <SectionHeader title={pil.title} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-100">
           {PILARES.map((pilar, i) => (

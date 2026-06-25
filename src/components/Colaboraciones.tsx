@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { COLABORACIONES } from "../data";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
+import SectionHeader from "./SectionHeader";
 
 // ⚠️  Reemplazá con la URL de tu playlist de Spotify
 // Ejemplo: https://open.spotify.com/playlist/XXXXXX
@@ -17,17 +18,7 @@ export default function Colaboraciones() {
     <section id="colaboraciones" className="py-24 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl">
-            {col.title}
-          </h2>
-        </motion.div>
+        <SectionHeader title={col.title} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 

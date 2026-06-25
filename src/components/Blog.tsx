@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { BLOG_POSTS } from "../data";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
+import SectionHeader from "./SectionHeader";
 
 const TAG_COLORS = ["#7C3AED", "#EA580C", "#16A34A"];
 
@@ -13,23 +14,7 @@ export default function Blog() {
     <section id="blog" className="py-24 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 block mb-4">
-            06 — {blog.label}
-          </span>
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl mb-2">
-            {blog.title}
-          </h2>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-300">
-            {blog.subtitle}
-          </p>
-        </motion.div>
+        <SectionHeader label={`06 — ${blog.label}`} title={blog.title} subtitle={blog.subtitle} />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-neutral-100">
           {BLOG_POSTS.map((post, i) => (

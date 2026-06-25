@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { TIMELINE } from "../data";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
+import SectionHeader from "./SectionHeader";
 
 const ACCENT: Record<string, string> = {
   violet: "#7C3AED",
@@ -25,21 +26,10 @@ export default function Recorrido() {
     <section id="recorrido" className="py-24 md:py-36 bg-neutral-50">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-10"
-        >
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl mb-6">
-            {rec.title}
-          </h2>
-          <p className="text-neutral-500 text-sm leading-relaxed max-w-2xl mb-8">
-            {rec.philosophy}
-          </p>
+        <SectionHeader title={rec.title} subtitle={rec.philosophy} />
 
-          {/* Toggle button */}
+        {/* Toggle button */}
+        <div className="mb-10 -mt-8">
           <button
             onClick={() => setExpanded(v => !v)}
             className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer group"
@@ -49,7 +39,7 @@ export default function Recorrido() {
               className={`w-3.5 h-3.5 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
             />
           </button>
-        </motion.div>
+        </div>
 
         {/* Collapsible timeline */}
         <AnimatePresence initial={false}>

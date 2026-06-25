@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
 import { SHOWS_EN_VIVO } from "../data";
+import SectionHeader from "./SectionHeader";
 
 const ACCENT_COLORS: Record<string, string> = {
   violet: "#7C3AED",
@@ -23,20 +24,7 @@ export default function ShowsEnVivo() {
     <section id="shows" className="py-24 md:py-36 bg-white">
       <div className="max-w-5xl mx-auto px-6 md:px-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 block mb-4">
-            {t.label}
-          </span>
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl">
-            {t.title}
-          </h2>
-        </motion.div>
+        <SectionHeader label={t.label} title={t.title} />
 
         <div className="divide-y divide-neutral-100">
           {SHOWS_EN_VIVO.map((show, i) => {

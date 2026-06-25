@@ -4,6 +4,7 @@ import { ChevronDown, ExternalLink } from "lucide-react";
 import { PROYECTOS } from "../data";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
+import SectionHeader from "./SectionHeader";
 
 const TYPE_COLOR: Record<string, string> = {
   "Álbum":  "#7C3AED",
@@ -22,20 +23,7 @@ export default function ProyectosProios() {
     <section id="discografia" className="py-24 md:py-36 bg-neutral-50">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 block mb-4">
-            03 — {disc.label}
-          </span>
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl">
-            {disc.title}
-          </h2>
-        </motion.div>
+        <SectionHeader label={`03 — ${disc.label}`} title={disc.title} />
 
         <div className="space-y-px bg-neutral-100">
           {PROYECTOS.map((proyecto) => {

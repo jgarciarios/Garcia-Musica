@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
+import SectionHeader from "./SectionHeader";
 
 export default function ContactForm() {
   const { lang } = useLang();
@@ -44,19 +45,9 @@ export default function ContactForm() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* Left */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 block mb-4">
-              07 — {c.label}
-            </span>
-            <h2 className="font-display font-light text-black text-3xl md:text-4xl mb-6">
-              {c.title}
-            </h2>
-            <div className="space-y-4 text-sm text-neutral-500">
+          <div>
+            <SectionHeader label={`07 — ${c.label}`} title={c.title} />
+            <div className="space-y-4 text-sm text-neutral-500 -mt-8">
               <p className="flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-[#7C3AED] flex-shrink-0" />
                 Producción musical
@@ -70,7 +61,7 @@ export default function ContactForm() {
                 Band Experience
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right: form */}
           <motion.div
