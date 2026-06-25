@@ -3,6 +3,61 @@ import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
 
 
+// Cassette compacto con reels girando — decorativo
+function SpinningCassette() {
+  return (
+    <div className="select-none" aria-hidden="true">
+      <svg
+        viewBox="0 0 110 72"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-20 md:w-28 opacity-55"
+      >
+        <rect x="1" y="1" width="108" height="70" rx="5" fill="#111" stroke="#2a2a2a" strokeWidth="1" />
+        <rect x="6" y="6" width="98" height="26" rx="2" fill="#1a1a1a" />
+        <line x1="10" y1="12" x2="100" y2="12" stroke="#252525" strokeWidth="0.8" />
+        <line x1="10" y1="17" x2="100" y2="17" stroke="#252525" strokeWidth="0.8" />
+        <line x1="10" y1="22" x2="72" y2="22" stroke="#252525" strokeWidth="0.8" />
+        <rect x="10" y="9" width="18" height="2" rx="1" fill="#7C3AED" opacity="0.5" />
+        <rect x="14" y="36" width="82" height="26" rx="3" fill="#080808" />
+        <rect x="17" y="39" width="76" height="20" rx="1.5" fill="#0d0d0d" />
+        {/* Reel izquierdo */}
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: "linear" }}
+          style={{ transformBox: "fill-box", transformOrigin: "center" }}
+        >
+          <circle cx="36" cy="49" r="8.5" fill="#181818" stroke="#2c2c2c" strokeWidth="1" />
+          <circle cx="36" cy="49" r="3.8" fill="#111" stroke="#363636" strokeWidth="0.8" />
+          <circle cx="36" cy="49" r="1.4" fill="#444" />
+          <line x1="36" y1="40.5" x2="36" y2="45.2" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="36" y1="52.8" x2="36" y2="57.5" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="27.5" y1="49" x2="32.2" y2="49" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="39.8" y1="49" x2="44.5" y2="49" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
+        </motion.g>
+        {/* Reel derecho */}
+        <motion.g
+          animate={{ rotate: -360 }}
+          transition={{ duration: 3.4, repeat: Infinity, ease: "linear" }}
+          style={{ transformBox: "fill-box", transformOrigin: "center" }}
+        >
+          <circle cx="74" cy="49" r="8.5" fill="#181818" stroke="#2c2c2c" strokeWidth="1" />
+          <circle cx="74" cy="49" r="3.8" fill="#111" stroke="#363636" strokeWidth="0.8" />
+          <circle cx="74" cy="49" r="1.4" fill="#444" />
+          <line x1="74" y1="40.5" x2="74" y2="45.2" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="74" y1="52.8" x2="74" y2="57.5" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="65.5" y1="49" x2="70.2" y2="49" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="77.8" y1="49" x2="82.5" y2="49" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
+        </motion.g>
+        <path d="M36 57.5 Q55 62 74 57.5" fill="none" stroke="#1c1c1c" strokeWidth="0.8" />
+        <circle cx="8" cy="66" r="2.2" fill="#0a0a0a" stroke="#1e1e1e" strokeWidth="0.5" />
+        <circle cx="102" cy="66" r="2.2" fill="#0a0a0a" stroke="#1e1e1e" strokeWidth="0.5" />
+        <rect x="46" y="64" width="18" height="5" rx="1.5" fill="#111" stroke="#222" strokeWidth="0.5" />
+      </svg>
+    </div>
+  );
+}
+
 // Portastudio — Tascam-style 4-track cassette recorder
 function Cassette() {
   const CH_X  = [10, 52, 94, 136] as const;
@@ -163,8 +218,8 @@ export default function Hero() {
     <section className="min-h-screen flex flex-col justify-center pt-14 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10 w-full py-24 md:py-32">
 
-        {/* Portastudio + accent bar row */}
-        <div className="flex items-end gap-8 mb-10">
+        {/* Portastudio + cassette + accent bar row */}
+        <div className="flex items-end gap-6 mb-10">
           {/* Outer div carries scroll parallax; inner div carries entrance + hover */}
           <motion.div style={{ y: portastudioY }}>
             <motion.div
@@ -177,11 +232,21 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
+          {/* Cassette girando */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="mb-1"
+          >
+            <SpinningCassette />
+          </motion.div>
+
           {/* Accent bar */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.5 }}
             className="origin-left w-12 h-0.5 bg-[#7C3AED] mb-2"
           />
         </div>

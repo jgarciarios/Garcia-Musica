@@ -1,6 +1,7 @@
 import ScrollProgress from "./components/ScrollProgress";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
+import MediaCarousel from "./components/MediaCarousel";
 import Recorrido from "./components/Recorrido";
 import Pilares from "./components/Pilares";
 import ProyectosProios from "./components/ProyectosProios";
@@ -22,6 +23,7 @@ export default function App() {
         <Nav />
         <main>
           <Hero />
+          <MediaCarousel />
           <Recorrido />
           <Pilares />
           <ProyectosProios />

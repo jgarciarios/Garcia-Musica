@@ -18,11 +18,8 @@ export default function Nav() {
     { id: "recorrido",       label: nav.trayectoria },
     { id: "pilares",         label: nav.trabajo },
     { id: "discografia",     label: nav.discografia },
-    { id: "producciones",    label: nav.producciones },
-    { id: "colaboraciones",  label: nav.colaboraciones },
     { id: "shows",           label: nav.shows },
     { id: "band-experience", label: nav.bandExperience },
-    { id: "blog",            label: nav.blog },
     { id: "contacto",        label: nav.contacto },
   ];
 
