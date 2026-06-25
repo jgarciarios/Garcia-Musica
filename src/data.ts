@@ -243,9 +243,10 @@ export const PROYECTOS: Proyecto[] = [
     releases: [
       {
         id: "xris-ep",
-        title: "EP Solista",
-        year: "2023",
+        title: "En ti",
+        year: "2020",
         type: "EP",
+        coverImage: "https://i.scdn.co/image/ab67616d00001e028581d51d5315d8c756a42866",
         spotifyUrl: "https://open.spotify.com/album/4yBjrFyaZljESppgmVcDt8",
         roles: ["Guitarras", "Voces", "Co-autor", "Co-Producción", "Mastering"],
       },
