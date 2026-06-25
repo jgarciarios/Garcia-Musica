@@ -15,11 +15,10 @@ export default function Nav() {
   const [langOpen, setLangOpen] = useState(false);
 
   const LINKS = [
-    { id: "recorrido",       label: nav.trayectoria },
     { id: "pilares",         label: nav.trabajo },
-    { id: "discografia",     label: nav.discografia },
     { id: "shows",           label: nav.shows },
-    { id: "band-experience", label: nav.bandExperience },
+    { id: "recorrido",       label: nav.sobreMi },
+    { id: "blog",            label: nav.blog },
     { id: "contacto",        label: nav.contacto },
   ];
 

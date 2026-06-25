@@ -296,59 +296,92 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Tagline */}
+        {/* Tagline — propuesta de valor */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-neutral-500 text-base md:text-lg leading-relaxed max-w-lg mb-12"
+          className="text-neutral-500 text-base md:text-lg leading-relaxed max-w-xl mb-3"
         >
           {hero.tagline}
-          <span className="block mt-1 font-mono text-[11px] uppercase tracking-widest text-neutral-300">
-            {hero.location}
-          </span>
         </motion.p>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="block font-mono text-[11px] uppercase tracking-widest text-neutral-300 mb-10"
+        >
+          {hero.location}
+        </motion.span>
 
-        {/* CTA */}
+        {/* 3 puertas de entrada */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.65 }}
+          className="flex flex-wrap gap-3 mb-10"
+        >
+          {(
+            [
+              { label: hero.service1, id: "pilares",    color: "#7C3AED" },
+              { label: hero.service2, id: "pilares",    color: "#EA580C" },
+              { label: hero.service3, id: "shows",      color: "#16A34A" },
+            ] as const
+          ).map(({ label, id, color }) => (
+            <motion.button
+              key={label}
+              onClick={() => go(id)}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.96 }}
+              className="font-mono text-[10px] uppercase tracking-widest px-4 py-2 border transition-colors cursor-pointer"
+              style={{ borderColor: color + "44", color, backgroundColor: color + "0d" }}
+            >
+              {label} →
+            </motion.button>
+          ))}
+        </motion.div>
+
+        {/* CTA principal */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="flex items-center gap-6"
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="flex items-center gap-6 mb-16"
         >
           <motion.button
-            onClick={() => go("pilares")}
+            onClick={() => go("contacto")}
             whileHover={{ scale: 1.03, boxShadow: "0 0 22px rgba(124,58,237,0.28)" }}
             whileTap={{ scale: 0.96 }}
             transition={{ duration: 0.18 }}
-            className="font-mono text-[11px] uppercase tracking-widest text-white bg-black px-6 py-3 hover:bg-[#7C3AED] transition-colors cursor-pointer btn-primary"
+            className="font-mono text-[11px] uppercase tracking-widest text-white bg-black px-7 py-3.5 hover:bg-[#7C3AED] transition-colors cursor-pointer btn-primary"
           >
             {hero.cta}
           </motion.button>
           <motion.button
-            onClick={() => go("contacto")}
+            onClick={() => go("pilares")}
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.15 }}
             className="font-mono text-[11px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer"
           >
-            Contacto →
+            {hero.ctaSecondary} →
           </motion.button>
         </motion.div>
 
-        {/* Accent dots — staggered pulse */}
-        <div className="flex items-center gap-2 mt-16">
-          {(["#7C3AED","#EA580C","#16A34A"] as const).map((color, i) => (
-            <motion.span
-              key={color}
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: color }}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.9 + i * 0.1, type: "spring" }}
-            />
+        {/* Stats — placeholders editables */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.95 }}
+          className="flex flex-wrap gap-8"
+        >
+          {hero.stats.map((stat, i) => (
+            <div key={i} className="flex flex-col gap-0.5">
+              <span className="font-display font-semibold text-black text-xl">{stat.value}</span>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-neutral-400">{stat.label}</span>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
