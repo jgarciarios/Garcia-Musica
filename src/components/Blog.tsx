@@ -14,7 +14,7 @@ export default function Blog() {
     <section id="blog" className="py-24 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <SectionHeader label={`06 — ${blog.label}`} title={blog.title} subtitle={blog.subtitle} />
+        <SectionHeader label={blog.label} title={blog.title} subtitle={blog.subtitle} />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-neutral-100">
           {BLOG_POSTS.map((post, i) => (

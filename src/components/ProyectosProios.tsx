@@ -23,7 +23,7 @@ export default function ProyectosProios() {
     <section id="discografia" className="py-24 md:py-36 bg-neutral-50">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <SectionHeader label={`03 — ${disc.label}`} title={disc.title} />
+        <SectionHeader label={disc.label} title={disc.title} />
 
         <div className="space-y-px bg-neutral-100">
           {PROYECTOS.map((proyecto) => {
