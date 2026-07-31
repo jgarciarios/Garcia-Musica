@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
 
-      {/* ── Foto de fondo con parallax ── */}
+      {/* ── Foto de fondo ── */}
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 -top-16 -bottom-16"
@@ -28,48 +28,26 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* ── Gradiente: oscuro arriba (nav), luz en el medio, muy oscuro abajo ── */}
+      {/* ── Overlay: muy oscuro en la parte inferior, suave arriba ── */}
       <div
         className="absolute inset-0"
         style={{
-          background: [
-            "linear-gradient(to bottom,",
-            "  rgba(0,0,0,0.70) 0%,",
-            "  rgba(0,0,0,0.30) 20%,",
-            "  rgba(0,0,0,0.10) 40%,",
-            "  rgba(0,0,0,0.55) 65%,",
-            "  rgba(0,0,0,0.92) 100%",
-            ")",
-          ].join(" "),
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.20) 30%, rgba(0,0,0,0.75) 65%, rgba(0,0,0,0.96) 100%)",
         }}
       />
 
-      {/* ── Contenido: pegado al fondo ── */}
+      {/* ── Contenido: anclado al fondo ── */}
       <div className="relative z-10 flex-1 flex flex-col justify-end">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pb-14 md:pb-20">
+        <div className="max-w-6xl mx-auto px-8 md:px-14 w-full pb-16 md:pb-24">
 
-          {/* Accent bar */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
-            className="origin-left w-8 h-px bg-[#7C3AED] mb-7"
-          />
-
-          {/* Roles */}
-          <motion.p
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 mb-5"
-          >
-            {hero.roles}
-          </motion.p>
-
-          {/* Nombre */}
+          {/* Nombre — lo único que importa */}
           <h1
-            className="font-display font-light text-white leading-[1.0] mb-5"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 6.5rem)" }}
+            className="font-display font-light text-white leading-[0.95] mb-6"
+            style={{
+              fontSize: "clamp(3.5rem, 8.5vw, 8rem)",
+              textShadow: "0 2px 40px rgba(0,0,0,0.5)",
+            }}
           >
             <span className="block overflow-hidden">
               {"Christian".split("").map((ch, i) => (
@@ -77,7 +55,7 @@ export default function Hero() {
                   key={i}
                   initial={{ opacity: 0, y: "1em" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: 0.25 + i * 0.035, ease: "easeOut" }}
+                  transition={{ duration: 0.6, delay: 0.1 + i * 0.03, ease: [0.16, 1, 0.3, 1] }}
                   className="inline-block"
                 >
                   {ch}
@@ -90,7 +68,7 @@ export default function Hero() {
                   key={i}
                   initial={{ opacity: 0, y: "1em" }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: 0.48 + i * 0.035, ease: "easeOut" }}
+                  transition={{ duration: 0.6, delay: 0.35 + i * 0.03, ease: [0.16, 1, 0.3, 1] }}
                   className="inline-block"
                 >
                   {ch === " " ? " " : ch}
@@ -99,85 +77,63 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Tagline */}
+          {/* Una sola línea de descripción */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.55 }}
-            className="text-neutral-300 text-sm md:text-base leading-relaxed max-w-lg mb-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.75 }}
+            className="text-neutral-300 text-base md:text-lg leading-snug max-w-md mb-10"
           >
             {hero.tagline}
           </motion.p>
 
-          {/* Fila inferior: servicios + CTAs */}
+          {/* Un solo CTA + secundario discreto */}
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-wrap items-center gap-3 mb-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.95 }}
+            className="flex items-center gap-6"
           >
-            {/* Servicios */}
-            {(
-              [
-                { label: hero.service1, id: "pilares", color: "#7C3AED" },
-                { label: hero.service2, id: "pilares", color: "#EA580C" },
-                { label: hero.service3, id: "shows",   color: "#16A34A" },
-              ] as const
-            ).map(({ label, id, color }) => (
-              <motion.button
-                key={label}
-                onClick={() => go(id)}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.96 }}
-                className="font-mono text-[10px] uppercase tracking-widest px-4 py-2 border transition-colors cursor-pointer"
-                style={{ borderColor: color + "66", color, backgroundColor: color + "22" }}
-              >
-                {label} →
-              </motion.button>
-            ))}
-
-            {/* Separador vertical */}
-            <span className="hidden md:block w-px h-5 bg-white/20 mx-1" />
-
-            {/* CTA principal */}
             <motion.button
               onClick={() => go("contacto")}
-              whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(124,58,237,0.4)" }}
+              whileHover={{ scale: 1.04, boxShadow: "0 0 28px rgba(124,58,237,0.45)" }}
               whileTap={{ scale: 0.96 }}
               transition={{ duration: 0.18 }}
-              className="font-mono text-[11px] uppercase tracking-widest text-white bg-black/80 backdrop-blur-sm px-6 py-2 hover:bg-[#7C3AED] transition-colors cursor-pointer border border-white/10"
+              className="font-mono text-[11px] uppercase tracking-[0.2em] text-white bg-[#7C3AED] px-8 py-4 hover:bg-[#6D28D9] transition-colors cursor-pointer"
             >
               {hero.cta}
             </motion.button>
 
             <motion.button
               onClick={() => go("pilares")}
-              whileHover={{ x: 3 }}
+              whileHover={{ x: 4 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.15 }}
-              className="font-mono text-[11px] uppercase tracking-widest text-neutral-400 hover:text-white transition-colors cursor-pointer"
+              className="font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-400 hover:text-white transition-colors cursor-pointer"
             >
               {hero.ctaSecondary} →
             </motion.button>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="flex flex-wrap gap-8 pt-5 border-t border-white/10"
-          >
-            {hero.stats.map((stat, i) => (
-              <div key={i} className="flex flex-col gap-0.5">
-                <span className="font-display font-semibold text-white text-lg">{stat.value}</span>
-                <span className="font-mono text-[9px] uppercase tracking-widest text-neutral-500">{stat.label}</span>
-              </div>
-            ))}
-          </motion.div>
-
         </div>
       </div>
+
+      {/* ── Scroll indicator ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+        className="absolute bottom-8 right-10 z-10 hidden md:flex flex-col items-center gap-2"
+      >
+        <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-neutral-500 rotate-90 origin-center translate-y-6">
+          scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="w-px h-10 bg-gradient-to-b from-neutral-500 to-transparent"
+        />
+      </motion.div>
     </section>
   );
 }
