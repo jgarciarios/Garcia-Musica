@@ -2,271 +2,68 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
 
-
-// Cassette compacto con reels girando — decorativo
-function SpinningCassette() {
-  return (
-    <div className="select-none" aria-hidden="true">
-      <svg
-        viewBox="0 0 110 72"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-20 md:w-28 opacity-55"
-      >
-        <rect x="1" y="1" width="108" height="70" rx="5" fill="#111" stroke="#2a2a2a" strokeWidth="1" />
-        <rect x="6" y="6" width="98" height="26" rx="2" fill="#1a1a1a" />
-        <line x1="10" y1="12" x2="100" y2="12" stroke="#252525" strokeWidth="0.8" />
-        <line x1="10" y1="17" x2="100" y2="17" stroke="#252525" strokeWidth="0.8" />
-        <line x1="10" y1="22" x2="72" y2="22" stroke="#252525" strokeWidth="0.8" />
-        <rect x="10" y="9" width="18" height="2" rx="1" fill="#7C3AED" opacity="0.5" />
-        <rect x="14" y="36" width="82" height="26" rx="3" fill="#080808" />
-        <rect x="17" y="39" width="76" height="20" rx="1.5" fill="#0d0d0d" />
-        {/* Reel izquierdo */}
-        <motion.g
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2.8, repeat: Infinity, ease: "linear" }}
-          style={{ transformBox: "fill-box", transformOrigin: "center" }}
-        >
-          <circle cx="36" cy="49" r="8.5" fill="#181818" stroke="#2c2c2c" strokeWidth="1" />
-          <circle cx="36" cy="49" r="3.8" fill="#111" stroke="#363636" strokeWidth="0.8" />
-          <circle cx="36" cy="49" r="1.4" fill="#444" />
-          <line x1="36" y1="40.5" x2="36" y2="45.2" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="36" y1="52.8" x2="36" y2="57.5" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="27.5" y1="49" x2="32.2" y2="49" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="39.8" y1="49" x2="44.5" y2="49" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
-        </motion.g>
-        {/* Reel derecho */}
-        <motion.g
-          animate={{ rotate: -360 }}
-          transition={{ duration: 3.4, repeat: Infinity, ease: "linear" }}
-          style={{ transformBox: "fill-box", transformOrigin: "center" }}
-        >
-          <circle cx="74" cy="49" r="8.5" fill="#181818" stroke="#2c2c2c" strokeWidth="1" />
-          <circle cx="74" cy="49" r="3.8" fill="#111" stroke="#363636" strokeWidth="0.8" />
-          <circle cx="74" cy="49" r="1.4" fill="#444" />
-          <line x1="74" y1="40.5" x2="74" y2="45.2" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="74" y1="52.8" x2="74" y2="57.5" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="65.5" y1="49" x2="70.2" y2="49" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="77.8" y1="49" x2="82.5" y2="49" stroke="#383838" strokeWidth="1.3" strokeLinecap="round" />
-        </motion.g>
-        <path d="M36 57.5 Q55 62 74 57.5" fill="none" stroke="#1c1c1c" strokeWidth="0.8" />
-        <circle cx="8" cy="66" r="2.2" fill="#0a0a0a" stroke="#1e1e1e" strokeWidth="0.5" />
-        <circle cx="102" cy="66" r="2.2" fill="#0a0a0a" stroke="#1e1e1e" strokeWidth="0.5" />
-        <rect x="46" y="64" width="18" height="5" rx="1.5" fill="#111" stroke="#222" strokeWidth="0.5" />
-      </svg>
-    </div>
-  );
-}
-
-// Portastudio — Tascam-style 4-track cassette recorder
-function Cassette() {
-  const CH_X  = [10, 52, 94, 136] as const;
-  const CH_COLORS = ["#7C3AED", "#EA580C", "#16A34A", "#7C3AED"] as const;
-  const FADER_Y   = [108, 122, 114, 128] as const;
-
-  return (
-    <div className="relative select-none" aria-hidden="true">
-      <svg
-        viewBox="0 0 278 168"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-56 md:w-80 opacity-75"
-      >
-        {/* ── BODY ── */}
-        <rect x="2" y="2" width="274" height="164" rx="10" fill="#0a0a0a" />
-        <rect x="7" y="7" width="264" height="154" rx="7" fill="#181818" />
-
-        {/* ── VU METER STRIP ── */}
-        <rect x="9" y="10" width="172" height="26" rx="3" fill="#111" />
-        {/* L row */}
-        {[9,9,9,9,9,7,7,7,5,5,3,3,2,2,1,1].map((h, i) => (
-          <rect key={`vul${i}`} x={13 + i * 10} y={14} width={7} height={h} rx={1}
-            fill={i < 9 ? "#16A34A" : i < 13 ? "#EA580C" : "#dc2626"}
-            opacity={Math.max(0.12, 1 - i * 0.052)} />
-        ))}
-        {/* R row */}
-        {[9,9,9,9,9,9,7,7,7,5,3,2,1,1].map((h, i) => (
-          <rect key={`vur${i}`} x={13 + i * 10} y={25} width={7} height={h} rx={1}
-            fill={i < 10 ? "#16A34A" : "#EA580C"}
-            opacity={Math.max(0.12, 1 - i * 0.055)} />
-        ))}
-
-        {/* ── 4 CHANNEL STRIPS ── */}
-        {CH_X.map((cx, ch) => (
-          <g key={`ch${ch}`}>
-            <rect x={cx} y={40} width="39" height="118" rx="3" fill="#141414" />
-
-            {/* Channel label bar */}
-            <rect x={cx + 11} y={43} width={17} height={5} rx={1} fill="#1e1e1e" />
-
-            {/* Gain knob */}
-            <circle cx={cx + 11} cy={59} r={7} fill="#202020" stroke="#3a3a3a" strokeWidth={1.5} />
-            <circle cx={cx + 11} cy={59} r={2.5} fill="#3a3a3a" />
-            <line x1={cx + 11} y1={52} x2={cx + 11} y2={56.5} stroke="#777" strokeWidth={1.5} strokeLinecap="round" />
-
-            {/* Pan knob */}
-            <circle cx={cx + 27} cy={59} r={5} fill="#202020" stroke="#333" strokeWidth={1.2} />
-            <circle cx={cx + 27} cy={59} r={1.8} fill="#3a3a3a" />
-
-            {/* EQ section — 3 tiny knobs on track lines */}
-            {[72, 79, 86].map((y, qi) => (
-              <g key={qi}>
-                <rect x={cx + 5} y={y} width={29} height={1.5} rx={0.75} fill="#262626" />
-                <circle cx={cx + 19} cy={y + 0.75} r={3.5} fill="#1c1c1c" stroke="#2e2e2e" strokeWidth={1} />
-              </g>
-            ))}
-
-            {/* Fader track */}
-            <rect x={cx + 17} y={92} width={5} height={56} rx={2.5} fill="#0c0c0c" />
-
-            {/* Fader handle */}
-            <rect x={cx + 10} y={FADER_Y[ch]} width={19} height={10} rx={2.5} fill={CH_COLORS[ch]} />
-            <line
-              x1={cx + 10} y1={FADER_Y[ch] + 5}
-              x2={cx + 29} y2={FADER_Y[ch] + 5}
-              stroke="rgba(255,255,255,0.12)" strokeWidth={0.8}
-            />
-          </g>
-        ))}
-
-        {/* ── MASTER SECTION (right panel) ── */}
-        <rect x="183" y="10" width="90" height="148" rx="4" fill="#141414" />
-
-        {/* Cassette window */}
-        <rect x="187" y="14" width="82" height="60" rx="4" fill="#0a0a0a" />
-        <rect x="190" y="17" width="76" height="54" rx="2" fill="#0d0d0d" stroke="#222" strokeWidth={1} />
-
-        {/* Left reel */}
-        <circle cx="213" cy="44" r="17" fill="#191919" stroke="#2c2c2c" strokeWidth={1.5} />
-        <circle cx="213" cy="44" r="7"  fill="#111" stroke="#393939" strokeWidth={1.2} />
-        <circle cx="213" cy="44" r="3"  fill="#444" />
-        <line x1="213" y1="27" x2="213" y2="37" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
-        <line x1="213" y1="51" x2="213" y2="61" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
-        <line x1="196" y1="44" x2="206" y2="44" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
-        <line x1="220" y1="44" x2="230" y2="44" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
-
-        {/* Right reel */}
-        <circle cx="251" cy="44" r="17" fill="#191919" stroke="#2c2c2c" strokeWidth={1.5} />
-        <circle cx="251" cy="44" r="7"  fill="#111" stroke="#393939" strokeWidth={1.2} />
-        <circle cx="251" cy="44" r="3"  fill="#444" />
-        <line x1="251" y1="27" x2="251" y2="37" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
-        <line x1="251" y1="51" x2="251" y2="61" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
-        <line x1="234" y1="44" x2="244" y2="44" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
-        <line x1="258" y1="44" x2="268" y2="44" stroke="#383838" strokeWidth={2} strokeLinecap="round" />
-
-        {/* Tape path between reels */}
-        <path d="M213 61 Q232 66 251 61" fill="none" stroke="#2c2c2c" strokeWidth={1.2} />
-
-        {/* Transport buttons */}
-        {/* REW */}
-        <rect x="187" y="80" width="13" height="9" rx="2" fill="#282828" />
-        <path d="M196 84.5 L192 82 L192 87 Z" fill="#555" />
-        <path d="M193 84.5 L189.5 82 L189.5 87 Z" fill="#555" />
-        {/* PLAY */}
-        <rect x="203" y="80" width="13" height="9" rx="2" fill="#16A34A" opacity={0.75} />
-        <path d="M207 82.5 L207 87.5 L213 85 Z" fill="rgba(255,255,255,0.6)" />
-        {/* REC */}
-        <rect x="219" y="80" width="13" height="9" rx="2" fill="#dc2626" opacity={0.8} />
-        <circle cx="225.5" cy="84.5" r="2.5" fill="rgba(255,255,255,0.5)" />
-        {/* STOP */}
-        <rect x="235" y="80" width="13" height="9" rx="2" fill="#282828" />
-        <rect x="238.5" y="82.5" width="6" height="5" rx="1" fill="#555" />
-        {/* FF */}
-        <rect x="251" y="80" width="13" height="9" rx="2" fill="#282828" />
-        <path d="M254 84.5 L258 82 L258 87 Z" fill="#555" />
-        <path d="M257 84.5 L261 82 L261 87 Z" fill="#555" />
-
-        {/* Master volume / aux knobs */}
-        <circle cx="197" cy="101" r="9" fill="#1e1e1e" stroke="#333" strokeWidth={1.5} />
-        <circle cx="197" cy="101" r="3.5" fill="#333" />
-        <line x1="197" y1="92" x2="197" y2="97.5" stroke="#666" strokeWidth={1.5} strokeLinecap="round" />
-
-        <circle cx="197" cy="122" r="6.5" fill="#1e1e1e" stroke="#2e2e2e" strokeWidth={1.2} />
-        <circle cx="197" cy="122" r="2"  fill="#333" />
-
-        <circle cx="197" cy="138" r="5"   fill="#1e1e1e" stroke="#2e2e2e" strokeWidth={1} />
-
-        {/* Master fader track */}
-        <rect x="227" y="96" width="5" height="56" rx="2.5" fill="#0c0c0c" />
-        {/* Master fader handle */}
-        <rect x="219" y="115" width="21" height="12" rx="3" fill="#555" />
-        <line x1="219" y1="121" x2="240" y2="121" stroke="rgba(255,255,255,0.1)" strokeWidth={0.8} />
-
-        {/* Bottom label strip */}
-        <rect x="9" y="158" width="172" height="5" rx="1.5" fill="#111" />
-        <rect x="13" y="159" width="22" height="3" rx="1" fill="#1e1e1e" />
-        <rect x="39" y="159" width="16" height="3" rx="1" fill="#1e1e1e" />
-        <rect x="59" y="159" width="10" height="3" rx="1" fill="#1e1e1e" />
-      </svg>
-    </div>
-  );
-}
-
 export default function Hero() {
   const { lang } = useLang();
   const hero = translations[lang].hero;
 
-  // Parallax: portastudio drifts upward as user scrolls down
+  // Parallax: foto de fondo sube levemente al scrollear
   const { scrollY } = useScroll();
-  const portastudioY = useTransform(scrollY, [0, 600], [0, -45]);
+  const bgY = useTransform(scrollY, [0, 700], [0, 80]);
 
   const go = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-14 bg-white">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full py-24 md:py-32">
+    <section className="relative min-h-screen flex flex-col justify-end overflow-hidden">
 
-        {/* Portastudio + cassette + accent bar row */}
-        <div className="flex items-end gap-6 mb-10">
-          {/* Outer div carries scroll parallax; inner div carries entrance + hover */}
-          <motion.div style={{ y: portastudioY }}>
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              whileHover={{ scale: 1.025, transition: { duration: 0.4 } }}
-            >
-              <Cassette />
-            </motion.div>
-          </motion.div>
+      {/* ── Foto de fondo con parallax ── */}
+      <motion.div
+        style={{ y: bgY }}
+        className="absolute inset-0 -top-12 -bottom-12"
+      >
+        <img
+          src="/hero-studio.jpg"
+          alt="Estudio de grabación"
+          className="w-full h-full object-cover object-center"
+        />
+      </motion.div>
 
-          {/* Cassette girando */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
-            className="mb-1"
-          >
-            <SpinningCassette />
-          </motion.div>
+      {/* ── Gradiente oscuro para legibilidad ── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0.88) 100%)",
+        }}
+      />
 
-          {/* Accent bar */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.5 }}
-            className="origin-left w-12 h-0.5 bg-[#7C3AED] mb-2"
-          />
-        </div>
+      {/* ── Contenido ── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full pt-28 pb-16 md:pb-24">
+
+        {/* Accent bar */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+          className="origin-left w-10 h-px bg-[#7C3AED] mb-8 opacity-80"
+        />
 
         {/* Roles */}
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 mb-6"
+          className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-300 mb-6"
         >
           {hero.roles}
         </motion.p>
 
-        {/* Name — staggered word reveal */}
+        {/* Name — staggered character reveal */}
         <h1
-          className="font-display font-light text-black leading-[1.05] mb-6 overflow-hidden"
+          className="font-display font-light text-white leading-[1.05] mb-6 overflow-hidden"
           style={{ fontSize: "clamp(2.4rem, 6vw, 5.5rem)" }}
         >
-          {/* Line 1: "Christian" — characters stagger in */}
           <span className="block overflow-hidden">
             {"Christian".split("").map((ch, i) => (
               <motion.span
@@ -280,9 +77,8 @@ export default function Hero() {
               </motion.span>
             ))}
           </span>
-          {/* Line 2: "García Ríos" — slightly offset stagger */}
           <span className="block overflow-hidden font-semibold">
-            {"García Ríos".split("").map((ch, i) => (
+            {["G","a","r","c","ía"," ","R","íos"].join("").split("").map((ch, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: "1em" }}
@@ -296,23 +92,15 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Tagline — propuesta de valor */}
+        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-neutral-500 text-base md:text-lg leading-relaxed max-w-xl mb-3"
+          className="text-neutral-300 text-base md:text-lg leading-relaxed max-w-xl mb-10"
         >
           {hero.tagline}
         </motion.p>
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="block font-mono text-[11px] uppercase tracking-widest text-neutral-300 mb-10"
-        >
-          {hero.location}
-        </motion.span>
 
         {/* 3 puertas de entrada */}
         <motion.div
@@ -323,9 +111,9 @@ export default function Hero() {
         >
           {(
             [
-              { label: hero.service1, id: "pilares",    color: "#7C3AED" },
-              { label: hero.service2, id: "pilares",    color: "#EA580C" },
-              { label: hero.service3, id: "shows",      color: "#16A34A" },
+              { label: hero.service1, id: "pilares", color: "#7C3AED" },
+              { label: hero.service2, id: "pilares", color: "#EA580C" },
+              { label: hero.service3, id: "shows",   color: "#16A34A" },
             ] as const
           ).map(({ label, id, color }) => (
             <motion.button
@@ -334,7 +122,7 @@ export default function Hero() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
               className="font-mono text-[10px] uppercase tracking-widest px-4 py-2 border transition-colors cursor-pointer"
-              style={{ borderColor: color + "44", color, backgroundColor: color + "0d" }}
+              style={{ borderColor: color + "66", color, backgroundColor: color + "22" }}
             >
               {label} →
             </motion.button>
@@ -350,7 +138,7 @@ export default function Hero() {
         >
           <motion.button
             onClick={() => go("contacto")}
-            whileHover={{ scale: 1.03, boxShadow: "0 0 22px rgba(124,58,237,0.28)" }}
+            whileHover={{ scale: 1.03, boxShadow: "0 0 22px rgba(124,58,237,0.4)" }}
             whileTap={{ scale: 0.96 }}
             transition={{ duration: 0.18 }}
             className="font-mono text-[11px] uppercase tracking-widest text-white bg-black px-7 py-3.5 hover:bg-[#7C3AED] transition-colors cursor-pointer btn-primary"
@@ -362,13 +150,13 @@ export default function Hero() {
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.15 }}
-            className="font-mono text-[11px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer"
+            className="font-mono text-[11px] uppercase tracking-widest text-neutral-300 hover:text-white transition-colors cursor-pointer"
           >
             {hero.ctaSecondary} →
           </motion.button>
         </motion.div>
 
-        {/* Stats — placeholders editables */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -377,7 +165,7 @@ export default function Hero() {
         >
           {hero.stats.map((stat, i) => (
             <div key={i} className="flex flex-col gap-0.5">
-              <span className="font-display font-semibold text-black text-xl">{stat.value}</span>
+              <span className="font-display font-semibold text-white text-xl">{stat.value}</span>
               <span className="font-mono text-[9px] uppercase tracking-widest text-neutral-400">{stat.label}</span>
             </div>
           ))}
