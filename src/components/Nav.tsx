@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useLang } from "../context/LangContext";
@@ -13,13 +13,20 @@ export default function Nav() {
 
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const LINKS = [
-    { id: "pilares",         label: nav.trabajo },
-    { id: "shows",           label: nav.shows },
-    { id: "recorrido",       label: nav.sobreMi },
-    { id: "blog",            label: nav.blog },
-    { id: "contacto",        label: nav.contacto },
+    { id: "pilares",   label: nav.trabajo },
+    { id: "shows",     label: nav.shows },
+    { id: "recorrido", label: nav.sobreMi },
+    { id: "blog",      label: nav.blog },
+    { id: "contacto",  label: nav.contacto },
   ];
 
   const go = (id: string) => {
@@ -28,12 +35,20 @@ export default function Nav() {
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-white border-b border-neutral-100">
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-400 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-sm border-b border-neutral-100 shadow-[0_1px_12px_rgba(0,0,0,0.06)]"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
 
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="font-display font-semibold text-sm tracking-[0.12em] text-black uppercase cursor-pointer select-none"
+          className={`font-display font-semibold text-sm tracking-[0.12em] uppercase cursor-pointer select-none transition-colors duration-300 ${
+            scrolled ? "text-black" : "text-white"
+          }`}
         >
           García Música
         </button>
@@ -43,7 +58,11 @@ export default function Nav() {
             <button
               key={id}
               onClick={() => go(id)}
-              className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer"
+              className={`text-[10px] font-mono uppercase tracking-widest transition-colors duration-300 cursor-pointer ${
+                scrolled
+                  ? "text-neutral-400 hover:text-black"
+                  : "text-neutral-200 hover:text-white"
+              }`}
             >
               {label}
             </button>
@@ -54,7 +73,11 @@ export default function Nav() {
           <div className="relative">
             <button
               onClick={() => setLangOpen(v => !v)}
-              className="flex items-center gap-1 font-mono text-[11px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer"
+              className={`flex items-center gap-1 font-mono text-[11px] uppercase tracking-widest transition-colors duration-300 cursor-pointer ${
+                scrolled
+                  ? "text-neutral-400 hover:text-black"
+                  : "text-neutral-200 hover:text-white"
+              }`}
             >
               {LANG_LABELS[lang]}
               <ChevronDown className={`w-3 h-3 transition-transform ${langOpen ? "rotate-180" : ""}`} />
@@ -72,7 +95,9 @@ export default function Nav() {
                     <button
                       key={l}
                       onClick={() => { setLang(l); setLangOpen(false); }}
-                      className={`block w-full text-left px-3 py-1.5 font-mono text-[11px] uppercase tracking-widest transition-colors cursor-pointer ${l === lang ? "text-black font-medium" : "text-neutral-400 hover:text-black"}`}
+                      className={`block w-full text-left px-3 py-1.5 font-mono text-[11px] uppercase tracking-widest transition-colors cursor-pointer ${
+                        l === lang ? "text-black font-medium" : "text-neutral-400 hover:text-black"
+                      }`}
                     >
                       {LANG_LABELS[l]}
                     </button>
@@ -84,7 +109,9 @@ export default function Nav() {
 
           <button
             onClick={() => setOpen(v => !v)}
-            className="lg:hidden text-neutral-500 hover:text-black transition-colors cursor-pointer"
+            className={`lg:hidden transition-colors duration-300 cursor-pointer ${
+              scrolled ? "text-neutral-500 hover:text-black" : "text-neutral-200 hover:text-white"
+            }`}
             aria-label="Menú"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -99,14 +126,14 @@ export default function Nav() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden overflow-hidden bg-white border-t border-neutral-100"
+            className="lg:hidden overflow-hidden bg-black/90 backdrop-blur-sm border-t border-white/10"
           >
             <div className="px-6 py-4 flex flex-col gap-1">
               {LINKS.map(({ id, label }) => (
                 <button
                   key={id}
                   onClick={() => go(id)}
-                  className="text-left py-2.5 font-mono text-[11px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer border-b border-neutral-50 last:border-0"
+                  className="text-left py-2.5 font-mono text-[11px] uppercase tracking-widest text-neutral-300 hover:text-white transition-colors cursor-pointer border-b border-white/10 last:border-0"
                 >
                   {label}
                 </button>
