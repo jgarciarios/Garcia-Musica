@@ -28,6 +28,7 @@ export default function Nav() {
     { id: "blog",      label: nav.blog },
     { id: "contacto",  label: nav.contacto },
   ];
+  // Orden en página: Pilares (Trabajo) → Shows → Recorrido (Sobre Mí) → Blog → Contacto ✓
 
   const go = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });

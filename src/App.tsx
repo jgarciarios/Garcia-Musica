@@ -23,8 +23,6 @@ export default function App() {
         <Nav />
         <main>
           <Hero />
-          <MediaCarousel />
-          <Recorrido />
           <Pilares />
           <ProyectosProios />
           <Producciones />
@@ -32,6 +30,8 @@ export default function App() {
           <YouTubeSection />
           <ShowsEnVivo />
           <BandExperience />
+          <Recorrido />
+          <MediaCarousel />
           <Blog />
           <ContactForm />
         </main>
