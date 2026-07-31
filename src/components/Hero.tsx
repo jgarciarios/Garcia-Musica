@@ -7,7 +7,7 @@ export default function Hero() {
   const hero = translations[lang].hero;
 
   const { scrollY } = useScroll();
-  const bgY = useTransform(scrollY, [0, 700], [0, 100]);
+  const bgY = useTransform(scrollY, [0, 700], [0, 80]);
 
   const go = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -16,19 +16,27 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
 
-      {/* ── Foto de fondo ── */}
+      {/* ── Video de fondo con parallax ── */}
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 -top-16 -bottom-16"
       >
-        <img
-          src="/hero-studio.jpg"
-          alt="Estudio de grabación"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/hero-studio.jpg"
           className="w-full h-full object-cover object-center"
-        />
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          {/* Fallback: foto si el browser no soporta video */}
+          <img src="/hero-studio.jpg" alt="Estudio de grabación" className="w-full h-full object-cover" />
+        </video>
       </motion.div>
 
-      {/* ── Overlay: muy oscuro en la parte inferior, suave arriba ── */}
+      {/* ── Overlay oscuro ── */}
       <div
         className="absolute inset-0"
         style={{
@@ -37,11 +45,11 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Contenido: anclado al fondo ── */}
+      {/* ── Contenido ── */}
       <div className="relative z-10 flex-1 flex flex-col justify-end">
         <div className="max-w-6xl mx-auto px-8 md:px-14 w-full pb-16 md:pb-24">
 
-          {/* Nombre — lo único que importa */}
+          {/* Nombre */}
           <h1
             className="font-display font-light text-white leading-[0.95] mb-6"
             style={{
@@ -71,13 +79,13 @@ export default function Hero() {
                   transition={{ duration: 0.6, delay: 0.35 + i * 0.03, ease: [0.16, 1, 0.3, 1] }}
                   className="inline-block"
                 >
-                  {ch === " " ? " " : ch}
+                  {ch === " " ? " " : ch}
                 </motion.span>
               ))}
             </span>
           </h1>
 
-          {/* Una sola línea de descripción */}
+          {/* Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,7 +95,7 @@ export default function Hero() {
             {hero.tagline}
           </motion.p>
 
-          {/* Un solo CTA + secundario discreto */}
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -125,9 +133,6 @@ export default function Hero() {
         transition={{ delay: 1.5, duration: 0.8 }}
         className="absolute bottom-8 right-10 z-10 hidden md:flex flex-col items-center gap-2"
       >
-        <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-neutral-500 rotate-90 origin-center translate-y-6">
-          scroll
-        </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
