@@ -28,7 +28,8 @@ export default function Hero() {
           playsInline
           preload="auto"
           poster="/hero-studio.jpg"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center scale-105"
+          style={{ filter: "blur(2px)" }}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
           {/* Fallback: foto si el browser no soporta video */}
@@ -41,7 +42,7 @@ export default function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.20) 30%, rgba(0,0,0,0.75) 65%, rgba(0,0,0,0.96) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 30%, rgba(0,0,0,0.80) 65%, rgba(0,0,0,0.97) 100%)",
         }}
       />
 
