@@ -36,67 +36,76 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-400 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-sm border-b border-neutral-100 shadow-[0_1px_12px_rgba(0,0,0,0.06)]"
-          : "bg-transparent border-b border-transparent"
+          ? "bg-white/97 backdrop-blur-sm border-b border-neutral-150 shadow-[0_1px_16px_rgba(0,0,0,0.08)]"
+          : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
 
+        {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`font-display font-semibold text-sm tracking-[0.12em] uppercase cursor-pointer select-none transition-colors duration-300 ${
+          className={`font-display font-bold text-base tracking-[0.08em] uppercase cursor-pointer select-none transition-colors duration-300 ${
             scrolled ? "text-black" : "text-white"
           }`}
         >
           García Música
         </button>
 
-        <nav className="hidden lg:flex items-center gap-6">
+        {/* Links desktop */}
+        <nav className="hidden lg:flex items-center gap-8">
           {LINKS.map(({ id, label }) => (
             <button
               key={id}
               onClick={() => go(id)}
-              className={`text-[10px] font-mono uppercase tracking-widest transition-colors duration-300 cursor-pointer ${
+              className={`relative text-sm font-medium tracking-wide transition-colors duration-300 cursor-pointer group ${
                 scrolled
-                  ? "text-neutral-400 hover:text-black"
-                  : "text-neutral-200 hover:text-white"
+                  ? "text-neutral-500 hover:text-black"
+                  : "text-white/80 hover:text-white"
               }`}
             >
               {label}
+              {/* underline on hover */}
+              <span
+                className={`absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300 ${
+                  scrolled ? "bg-black" : "bg-white"
+                }`}
+              />
             </button>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        {/* Right side: lang + hamburger */}
+        <div className="flex items-center gap-5">
           <div className="relative">
             <button
               onClick={() => setLangOpen(v => !v)}
-              className={`flex items-center gap-1 font-mono text-[11px] uppercase tracking-widest transition-colors duration-300 cursor-pointer ${
+              className={`flex items-center gap-1 text-sm font-medium tracking-wide transition-colors duration-300 cursor-pointer ${
                 scrolled
-                  ? "text-neutral-400 hover:text-black"
-                  : "text-neutral-200 hover:text-white"
+                  ? "text-neutral-500 hover:text-black"
+                  : "text-white/80 hover:text-white"
               }`}
             >
               {LANG_LABELS[lang]}
-              <ChevronDown className={`w-3 h-3 transition-transform ${langOpen ? "rotate-180" : ""}`} />
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${langOpen ? "rotate-180" : ""}`} />
             </button>
             <AnimatePresence>
               {langOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: -4 }}
+                  initial={{ opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -4 }}
+                  exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-7 bg-white border border-neutral-100 shadow-sm rounded py-1 min-w-[60px]"
+                  className="absolute right-0 top-8 bg-white border border-neutral-100 shadow-lg rounded-sm py-1 min-w-[64px]"
                 >
                   {(["es", "fr", "en"] as Lang[]).map(l => (
                     <button
                       key={l}
                       onClick={() => { setLang(l); setLangOpen(false); }}
-                      className={`block w-full text-left px-3 py-1.5 font-mono text-[11px] uppercase tracking-widest transition-colors cursor-pointer ${
-                        l === lang ? "text-black font-medium" : "text-neutral-400 hover:text-black"
+                      className={`block w-full text-left px-4 py-2 text-sm font-medium tracking-wide transition-colors cursor-pointer ${
+                        l === lang ? "text-black" : "text-neutral-400 hover:text-black"
                       }`}
                     >
                       {LANG_LABELS[l]}
@@ -109,8 +118,8 @@ export default function Nav() {
 
           <button
             onClick={() => setOpen(v => !v)}
-            className={`lg:hidden transition-colors duration-300 cursor-pointer ${
-              scrolled ? "text-neutral-500 hover:text-black" : "text-neutral-200 hover:text-white"
+            className={`lg:hidden transition-colors duration-300 cursor-pointer p-1 ${
+              scrolled ? "text-neutral-600 hover:text-black" : "text-white/80 hover:text-white"
             }`}
             aria-label="Menú"
           >
@@ -119,6 +128,7 @@ export default function Nav() {
         </div>
       </div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -126,14 +136,14 @@ export default function Nav() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden overflow-hidden bg-black/90 backdrop-blur-sm border-t border-white/10"
+            className="lg:hidden overflow-hidden bg-black/92 backdrop-blur-sm border-t border-white/10"
           >
-            <div className="px-6 py-4 flex flex-col gap-1">
+            <div className="px-6 py-5 flex flex-col gap-1">
               {LINKS.map(({ id, label }) => (
                 <button
                   key={id}
                   onClick={() => go(id)}
-                  className="text-left py-2.5 font-mono text-[11px] uppercase tracking-widest text-neutral-300 hover:text-white transition-colors cursor-pointer border-b border-white/10 last:border-0"
+                  className="text-left py-3 text-sm font-medium text-neutral-300 hover:text-white transition-colors cursor-pointer border-b border-white/8 last:border-0"
                 >
                   {label}
                 </button>
