@@ -1,102 +1,90 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { motion } from "motion/react";
 import { TIMELINE } from "../data";
 import { useLang } from "../context/LangContext";
 import { translations } from "../utils/i18n";
-import SectionHeader from "./SectionHeader";
 
 const ACCENT: Record<string, string> = {
   violet: "#7C3AED",
   orange: "#EA580C",
   green:  "#16A34A",
 };
-const ACCENT_BG: Record<string, string> = {
-  violet: "#7C3AED14",
-  orange: "#EA580C14",
-  green:  "#16A34A14",
-};
 
 export default function Recorrido() {
   const { lang } = useLang();
   const rec = translations[lang].recorrido;
-  const [expanded, setExpanded] = useState(false);
 
   return (
-    <section id="recorrido" className="py-24 md:py-36 bg-neutral-50">
+    <section id="recorrido" className="py-24 md:py-36 bg-black text-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <SectionHeader title={rec.title} subtitle={rec.philosophy} />
-
-        {/* Toggle button */}
-        <div className="mb-10 -mt-8">
-          <button
-            onClick={() => setExpanded(v => !v)}
-            className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-neutral-400 hover:text-black transition-colors cursor-pointer group"
+        {/* Header */}
+        <div className="mb-16 md:mb-20">
+          <motion.span
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+            className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 block mb-5"
           >
-            <span>{expanded ? rec.collapse : rec.expand}</span>
-            <ChevronDown
-              className={`w-3.5 h-3.5 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
-            />
-          </button>
+            Sobre mí
+          </motion.span>
+
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: "left" }}
+            className="h-px bg-white w-10 mb-6 opacity-20"
+          />
+
+          {/* Filosofía — grande y prominente */}
+          <motion.blockquote
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="font-display font-light text-white text-2xl md:text-3xl lg:text-4xl leading-snug max-w-3xl"
+          >
+            "{rec.philosophy}"
+          </motion.blockquote>
         </div>
 
-        {/* Collapsible timeline */}
-        <AnimatePresence initial={false}>
-          {expanded && (
+        {/* Timeline grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
+          {TIMELINE.map((item, i) => (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="overflow-hidden"
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
+              className="bg-black p-7 hover:bg-white/5 transition-colors group"
             >
-              <div className="relative">
-                {/* Vertical line */}
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-neutral-200 hidden md:block" />
-
-                <div className="space-y-0">
-                  {TIMELINE.map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: i * 0.07 }}
-                      className="md:pl-12 py-6 border-b border-neutral-100 last:border-0"
-                    >
-                      <div className="relative flex items-start gap-4">
-                        {/* Dot on the line */}
-                        <div
-                          className="hidden md:block absolute left-[-16px] w-2 h-2 rounded-full mt-1.5 flex-shrink-0"
-                          style={{ backgroundColor: ACCENT[item.accent] }}
-                        />
-
-                        <div className="flex-1">
-                          {/* Custom label tag (no "Formación" repetition) */}
-                          <span
-                            className="font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded inline-block mb-2"
-                            style={{
-                              color: ACCENT[item.accent],
-                              backgroundColor: ACCENT_BG[item.accent],
-                            }}
-                          >
-                            {item.label}
-                          </span>
-                          <h3 className="font-display font-medium text-black text-base mb-1.5">
-                            {item.era}
-                          </h3>
-                          <p className="text-neutral-500 text-sm leading-relaxed">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+              {/* Acento + label */}
+              <div className="flex items-center gap-2 mb-5">
+                <span
+                  className="w-4 h-px flex-shrink-0"
+                  style={{ backgroundColor: ACCENT[item.accent] }}
+                />
+                <span
+                  className="font-mono text-[9px] uppercase tracking-[0.2em]"
+                  style={{ color: ACCENT[item.accent] }}
+                >
+                  {item.label}
+                </span>
               </div>
+
+              <h3 className="font-display font-medium text-white text-base mb-3 leading-snug group-hover:text-neutral-200 transition-colors">
+                {item.era}
+              </h3>
+              <p className="text-neutral-500 text-sm leading-relaxed">
+                {item.description}
+              </p>
             </motion.div>
-          )}
-        </AnimatePresence>
+          ))}
+        </div>
+
       </div>
     </section>
   );
