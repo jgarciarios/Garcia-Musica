@@ -34,8 +34,11 @@ export default function ContactForm() {
     }
   };
 
+  const labelClass =
+    "font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500 block mb-2";
+
   const inputClass =
-    "w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#7C3AED] transition-colors";
+    "w-full bg-white/[0.07] border border-white/20 px-4 py-3.5 text-sm text-white placeholder-neutral-500 rounded-sm focus:outline-none focus:border-[#7C3AED] focus:bg-white/[0.1] focus:ring-1 focus:ring-[#7C3AED]/40 transition-all";
 
   return (
     <section id="contacto" className="py-24 md:py-36 bg-black text-white">
@@ -107,31 +110,52 @@ export default function ContactForm() {
                 <p className="font-display font-medium text-white">{c.success}</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                  type="text"
-                  required
-                  placeholder={c.namePlaceholder}
-                  value={form.name}
-                  onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                  className={inputClass}
-                />
-                <input
-                  type="email"
-                  required
-                  placeholder={c.emailPlaceholder}
-                  value={form.email}
-                  onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                  className={inputClass}
-                />
-                <textarea
-                  required
-                  rows={5}
-                  placeholder={c.msgPlaceholder}
-                  value={form.message}
-                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                  className={`${inputClass} resize-none`}
-                />
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label htmlFor="contact-name" className={labelClass}>
+                    {c.namePlaceholder}
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    required
+                    placeholder={c.namePlaceholder}
+                    value={form.name}
+                    onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                    className={inputClass}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="contact-email" className={labelClass}>
+                    {c.emailPlaceholder}
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    required
+                    placeholder={c.emailPlaceholder}
+                    value={form.email}
+                    onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                    className={inputClass}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="contact-message" className={labelClass}>
+                    {c.msgPlaceholder}
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    required
+                    rows={6}
+                    placeholder={c.msgPlaceholder}
+                    value={form.message}
+                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                    className={`${inputClass} resize-none`}
+                  />
+                </div>
+
                 <motion.button
                   type="submit"
                   disabled={status === "sending"}
