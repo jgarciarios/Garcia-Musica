@@ -48,7 +48,7 @@ export default function Hero() {
 
       {/* ── Contenido ── */}
       <div className="relative z-10 flex-1 flex flex-col justify-end">
-        <div className="max-w-6xl mx-auto px-8 md:px-14 w-full pb-16 md:pb-24">
+        <div className="max-w-6xl mx-auto px-8 md:px-14 w-full pb-10 md:pb-24">
 
           {/* Nombre */}
           <h1
@@ -91,7 +91,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.75 }}
-            className="text-neutral-300 text-base md:text-lg leading-snug max-w-md mb-10"
+            className="text-neutral-300 text-base md:text-lg leading-snug max-w-md mb-6 md:mb-10"
           >
             {hero.tagline}
           </motion.p>

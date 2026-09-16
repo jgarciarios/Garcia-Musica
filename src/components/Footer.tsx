@@ -13,7 +13,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-black border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
 
         {/* Logo */}
         <span className="font-display font-semibold text-sm tracking-[0.1em] uppercase text-white">

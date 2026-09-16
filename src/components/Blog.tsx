@@ -11,7 +11,7 @@ export default function Blog() {
   const blog = translations[lang].blog;
 
   return (
-    <section id="blog" className="py-24 md:py-36 bg-white">
+    <section id="blog" className="py-8 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <SectionHeader label={blog.label} title={blog.title} subtitle={blog.subtitle} />
@@ -24,7 +24,7 @@ export default function Blog() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="bg-white p-7 hover:bg-neutral-50 transition-colors group cursor-pointer"
+              className="bg-white p-5 md:p-7 hover:bg-neutral-50 transition-colors group cursor-pointer"
             >
               <span className="font-mono text-[10px] text-neutral-300 block mb-4">
                 {post.date}

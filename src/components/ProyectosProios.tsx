@@ -20,7 +20,7 @@ export default function ProyectosProios() {
   const [openId, setOpenId] = useState<string | null>("falsos-clones");
 
   return (
-    <section id="discografia" className="py-24 md:py-36 bg-neutral-50">
+    <section id="discografia" className="py-8 md:py-36 bg-neutral-50">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <SectionHeader label={disc.label} title={disc.title} />
@@ -33,7 +33,7 @@ export default function ProyectosProios() {
                 {/* Accordion header */}
                 <button
                   onClick={() => setOpenId(isOpen ? null : proyecto.id)}
-                  className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-neutral-50 transition-colors cursor-pointer"
+                  className="w-full flex items-center justify-between px-4 py-3.5 md:px-6 md:py-5 text-left hover:bg-neutral-50 transition-colors cursor-pointer"
                 >
                   <div>
                     <h3 className="font-display font-medium text-black text-lg">
@@ -82,12 +82,12 @@ export default function ProyectosProios() {
                       transition={{ duration: 0.25 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6">
+                      <div className="px-4 pb-4 md:px-6 md:pb-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
                           {proyecto.releases.map((release) => (
                             <div
                               key={release.id}
-                              className="border border-neutral-100 rounded p-4 hover:border-neutral-200 transition-colors group"
+                              className="border border-neutral-100 rounded p-3 md:p-4 hover:border-neutral-200 transition-colors group"
                             >
                               {/* Cover placeholder or image */}
                               {release.coverImage ? (

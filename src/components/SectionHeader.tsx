@@ -19,7 +19,7 @@ export default function SectionHeader({ label, title, subtitle, light = false }:
   const subtitleColor = light ? "text-neutral-400" : "text-neutral-500";
 
   return (
-    <div ref={ref} className="mb-16">
+    <div ref={ref} className="mb-6 md:mb-16">
       {/* Label */}
       {label && (
         <motion.span
@@ -38,11 +38,11 @@ export default function SectionHeader({ label, title, subtitle, light = false }:
         animate={inView ? { scaleX: 1 } : {}}
         transition={{ duration: 0.55, delay: label ? 0.08 : 0, ease: [0.16, 1, 0.3, 1] }}
         style={{ transformOrigin: "left" }}
-        className={`h-px ${lineColor} w-10 mb-6 opacity-60`}
+        className={`h-px ${lineColor} w-10 mb-4 md:mb-6 opacity-60`}
       />
 
       {/* Title — each word clips up individually */}
-      <h2 className={`font-display font-light ${textColor} text-3xl md:text-4xl`}>
+      <h2 className={`font-display font-light ${textColor} text-2xl md:text-4xl`}>
         <span className="flex flex-wrap" style={{ gap: "0 0.28em" }}>
           {words.map((word, i) => (
             <span key={i} className="overflow-hidden inline-block">

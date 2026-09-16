@@ -17,7 +17,7 @@ export default function YouTubeSection() {
   const videos = useMemo(() => shuffleArray(YOUTUBE_VIDEO_IDS).slice(0, 3), []);
 
   return (
-    <section id="videos" className="py-24 md:py-36 bg-white">
+    <section id="videos" className="py-8 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <motion.div
@@ -25,12 +25,12 @@ export default function YouTubeSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-8 md:mb-16"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 block mb-4">
             Videos
           </span>
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl">
+          <h2 className="font-display font-light text-black text-2xl md:text-4xl">
             En YouTube
           </h2>
         </motion.div>

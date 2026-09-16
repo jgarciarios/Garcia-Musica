@@ -41,7 +41,7 @@ export default function MediaCarousel() {
   };
 
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section className="py-8 md:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <motion.div
@@ -49,7 +49,7 @@ export default function MediaCarousel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex items-center justify-between mb-8"
+          className="flex items-center justify-between mb-5 md:mb-8"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400">
             Fotos & Videos

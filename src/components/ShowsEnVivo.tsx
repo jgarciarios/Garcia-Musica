@@ -21,7 +21,7 @@ export default function ShowsEnVivo() {
   };
 
   return (
-    <section id="shows" className="py-24 md:py-36 bg-white">
+    <section id="shows" className="py-8 md:py-36 bg-white">
       <div className="max-w-5xl mx-auto px-6 md:px-10">
 
         <SectionHeader label={t.label} title={t.title} />
@@ -40,7 +40,7 @@ export default function ShowsEnVivo() {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
               >
                 <button
-                  className="w-full text-left py-6 flex items-start justify-between gap-6 group cursor-pointer"
+                  className="w-full text-left py-3.5 md:py-6 flex items-start justify-between gap-4 md:gap-6 group cursor-pointer"
                   onClick={() => setOpenId(isOpen ? null : show.id)}
                   aria-expanded={isOpen}
                 >
@@ -80,7 +80,7 @@ export default function ShowsEnVivo() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="pb-8 pl-6 space-y-6">
+                      <div className="pb-4 pl-5 space-y-3 md:pl-6 md:pb-8 md:space-y-6">
                         <p className="text-neutral-500 text-sm leading-relaxed max-w-xl">
                           {show.description}
                         </p>

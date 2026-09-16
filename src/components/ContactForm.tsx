@@ -41,10 +41,10 @@ export default function ContactForm() {
     "w-full bg-white/[0.07] border border-white/20 px-4 py-3.5 text-sm text-white placeholder-neutral-500 rounded-sm focus:outline-none focus:border-[#7C3AED] focus:bg-white/[0.1] focus:ring-1 focus:ring-[#7C3AED]/40 transition-all";
 
   return (
-    <section id="contacto" className="py-24 md:py-36 bg-black text-white">
+    <section id="contacto" className="py-8 md:py-36 bg-black text-white">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-start">
 
           {/* Left — texto */}
           <div>
@@ -72,7 +72,7 @@ export default function ContactForm() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display font-light text-white text-3xl md:text-4xl mb-8"
+              className="font-display font-light text-white text-2xl md:text-4xl mb-5 md:mb-8"
             >
               {c.title}
             </motion.h2>

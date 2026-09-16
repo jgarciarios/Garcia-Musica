@@ -34,7 +34,7 @@ export default function BandExperience() {
   };
 
   return (
-    <section id="band-experience" className="py-24 md:py-36 bg-neutral-50">
+    <section id="band-experience" className="py-8 md:py-36 bg-neutral-50">
       <div className="max-w-5xl mx-auto px-6 md:px-10">
 
         {/* Header — always visible */}
@@ -43,12 +43,12 @@ export default function BandExperience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-10"
+          className="mb-6 md:mb-10"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400 block mb-4">
             {band.label}
           </span>
-          <h2 className="font-display font-light text-black text-3xl md:text-4xl mb-3">
+          <h2 className="font-display font-light text-black text-2xl md:text-4xl mb-3">
             {band.title}
           </h2>
           <p className="font-display text-[#EA580C] text-lg mb-6">
@@ -56,13 +56,13 @@ export default function BandExperience() {
           </p>
 
           {/* Mirror quote */}
-          <div className="border-l-2 border-[#7C3AED] pl-5 mb-8">
+          <div className="border-l-2 border-[#7C3AED] pl-5 mb-5 md:mb-8">
             <p className="font-display text-xl font-medium text-black italic">
               "{band.mirror}"
             </p>
           </div>
 
-          <p className="text-neutral-500 text-sm leading-relaxed max-w-2xl mb-8">
+          <p className="text-neutral-500 text-sm leading-relaxed max-w-2xl mb-5 md:mb-8">
             {band.description}
           </p>
 
@@ -93,7 +93,7 @@ export default function BandExperience() {
               transition={{ duration: 0.4, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <div className="pt-4 space-y-16">
+              <div className="pt-4 space-y-6 md:space-y-16">
 
                 {/* Habilidades */}
                 <div>
@@ -104,7 +104,7 @@ export default function BandExperience() {
                     {band.skills.map((skill: string, i: number) => {
                       const colors = ["#7C3AED", "#EA580C", "#16A34A", "#7C3AED", "#EA580C", "#16A34A", "#7C3AED", "#EA580C"];
                       return (
-                        <div key={skill} className="bg-white p-5">
+                        <div key={skill} className="bg-white p-4 md:p-5">
                           <div
                             className="w-1 h-5 mb-3"
                             style={{ backgroundColor: colors[i % colors.length] }}
@@ -124,7 +124,7 @@ export default function BandExperience() {
                     {band.formatTitle}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="border border-neutral-100 p-6 rounded">
+                    <div className="border border-neutral-100 p-4 md:p-6 rounded">
                       <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400 mb-2">
                         {band.duration}
                       </p>
@@ -132,7 +132,7 @@ export default function BandExperience() {
                         {band.durationVal}
                       </p>
                     </div>
-                    <div className="border border-neutral-100 p-6 rounded">
+                    <div className="border border-neutral-100 p-4 md:p-6 rounded">
                       <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400 mb-2">
                         {band.participants}
                       </p>
@@ -140,7 +140,7 @@ export default function BandExperience() {
                         {band.participantsVal}
                       </p>
                     </div>
-                    <div className="border border-neutral-100 p-6 rounded">
+                    <div className="border border-neutral-100 p-4 md:p-6 rounded">
                       <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400 mb-2">
                         {band.closing}
                       </p>
@@ -160,7 +160,7 @@ export default function BandExperience() {
                     {TEAM.map(({ name, role, accent }) => (
                       <div
                         key={name}
-                        className="p-6 bg-white"
+                        className="p-4 md:p-6 bg-white"
                         style={{ borderLeft: `3px solid ${accent}` }}
                       >
                         <p className="font-display font-semibold text-black text-base mb-1">

@@ -14,11 +14,11 @@ export default function Recorrido() {
   const rec = translations[lang].recorrido;
 
   return (
-    <section id="recorrido" className="py-24 md:py-36 bg-black text-white">
+    <section id="recorrido" className="py-8 md:py-36 bg-black text-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* Header */}
-        <div className="mb-16 md:mb-20">
+        <div className="mb-8 md:mb-20">
           <motion.span
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -59,7 +59,7 @@ export default function Recorrido() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="bg-black p-7 hover:bg-white/5 transition-colors group"
+              className="bg-black p-4 md:p-7 hover:bg-white/5 transition-colors group"
             >
               {/* Acento + label */}
               <div className="flex items-center gap-2 mb-5">

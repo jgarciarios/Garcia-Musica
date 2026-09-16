@@ -20,7 +20,7 @@ export default function Pilares() {
   const pil = translations[lang].pilares;
 
   return (
-    <section id="pilares" className="py-24 md:py-36 bg-white">
+    <section id="pilares" className="py-8 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <SectionHeader title={pil.title} />
@@ -33,7 +33,7 @@ export default function Pilares() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="bg-white p-8 hover:bg-neutral-50 transition-colors duration-200 group"
+              className="bg-white p-6 md:p-8 hover:bg-neutral-50 transition-colors duration-200 group"
             >
               <div className="flex items-center gap-3 mb-6">
                 <span className="font-mono text-[10px] text-neutral-300">

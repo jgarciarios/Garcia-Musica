@@ -20,7 +20,7 @@ export default function Colaboraciones() {
   const col = translations[lang].colaboraciones;
 
   return (
-    <section id="colaboraciones" className="py-24 md:py-36 bg-white">
+    <section id="colaboraciones" className="py-8 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <SectionHeader title={col.title} />
@@ -33,7 +33,7 @@ export default function Colaboraciones() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="bg-white p-6 flex flex-col gap-4 group hover:bg-neutral-50 transition-colors"
+              className="bg-white p-5 md:p-6 flex flex-col gap-3 md:gap-4 group hover:bg-neutral-50 transition-colors"
             >
               {/* Línea de color + categoría */}
               <div className="flex items-center gap-2">
