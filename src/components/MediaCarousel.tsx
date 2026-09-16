@@ -57,14 +57,14 @@ export default function MediaCarousel() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => scroll("left")}
-              className="w-8 h-8 flex items-center justify-center border border-neutral-200 hover:border-black transition-colors cursor-pointer"
+              className="w-11 h-11 flex items-center justify-center border border-neutral-200 hover:border-black transition-colors cursor-pointer"
               aria-label="Anterior"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-8 h-8 flex items-center justify-center border border-neutral-200 hover:border-black transition-colors cursor-pointer"
+              className="w-11 h-11 flex items-center justify-center border border-neutral-200 hover:border-black transition-colors cursor-pointer"
               aria-label="Siguiente"
             >
               <ChevronRight className="w-4 h-4" />

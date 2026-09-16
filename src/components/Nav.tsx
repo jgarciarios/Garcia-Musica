@@ -119,7 +119,7 @@ export default function Nav() {
 
           <button
             onClick={() => setOpen(v => !v)}
-            className={`lg:hidden transition-colors duration-300 cursor-pointer p-1 ${
+            className={`lg:hidden transition-colors duration-300 cursor-pointer p-3 -mr-3 flex items-center justify-center ${
               scrolled ? "text-neutral-600 hover:text-black" : "text-white/80 hover:text-white"
             }`}
             aria-label="Menú"
