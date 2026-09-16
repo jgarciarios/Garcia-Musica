@@ -25,7 +25,10 @@ export default function Pilares() {
 
         <SectionHeader title={pil.title} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-100">
+        <div
+          className="flex gap-3 overflow-x-auto pb-1 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-px md:bg-neutral-100 md:overflow-visible md:pb-0"
+          style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {PILARES.map((pilar, i) => (
             <motion.div
               key={pilar.id}
@@ -33,7 +36,8 @@ export default function Pilares() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="bg-white p-6 md:p-8 hover:bg-neutral-50 transition-colors duration-200 group"
+              style={{ scrollSnapAlign: "start" }}
+              className="flex-shrink-0 w-[80%] xs:w-64 border border-neutral-100 rounded md:w-auto md:border-0 md:rounded-none bg-white p-6 md:p-8 hover:bg-neutral-50 transition-colors duration-200 group"
             >
               <div className="flex items-center gap-3 mb-6">
                 <span className="font-mono text-[10px] text-neutral-300">

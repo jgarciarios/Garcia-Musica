@@ -16,7 +16,10 @@ export default function Blog() {
 
         <SectionHeader label={blog.label} title={blog.title} subtitle={blog.subtitle} />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-neutral-100">
+        <div
+          className="flex gap-3 overflow-x-auto pb-1 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-px md:bg-neutral-100 md:overflow-visible md:pb-0"
+          style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {BLOG_POSTS.map((post, i) => (
             <motion.article
               key={post.id}
@@ -24,7 +27,8 @@ export default function Blog() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="bg-white p-5 md:p-7 hover:bg-neutral-50 transition-colors group cursor-pointer"
+              style={{ scrollSnapAlign: "start" }}
+              className="flex-shrink-0 w-[80%] xs:w-64 border border-neutral-100 rounded md:w-auto md:border-0 md:rounded-none bg-white p-5 md:p-7 hover:bg-neutral-50 transition-colors group cursor-pointer"
             >
               <span className="font-mono text-[10px] text-neutral-300 block mb-4">
                 {post.date}

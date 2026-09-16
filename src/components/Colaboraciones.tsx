@@ -25,7 +25,10 @@ export default function Colaboraciones() {
 
         <SectionHeader title={col.title} />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-100">
+        <div
+          className="flex gap-3 overflow-x-auto pb-1 -mx-6 px-6 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-px sm:bg-neutral-100 sm:overflow-visible sm:pb-0"
+          style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {ITEMS.map((item, i) => (
             <motion.div
               key={i}
@@ -33,7 +36,8 @@ export default function Colaboraciones() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="bg-white p-5 md:p-6 flex flex-col gap-3 md:gap-4 group hover:bg-neutral-50 transition-colors"
+              style={{ scrollSnapAlign: "start" }}
+              className="flex-shrink-0 w-[75%] xs:w-56 sm:w-auto border border-neutral-100 rounded sm:border-0 sm:rounded-none bg-white p-5 md:p-6 flex flex-col gap-3 md:gap-4 group hover:bg-neutral-50 transition-colors"
             >
               {/* Línea de color + categoría */}
               <div className="flex items-center gap-2">

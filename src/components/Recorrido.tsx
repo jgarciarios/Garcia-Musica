@@ -18,13 +18,13 @@ export default function Recorrido() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* Header */}
-        <div className="mb-8 md:mb-20">
+        <div className="mb-6 md:mb-20">
           <motion.span
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45 }}
-            className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 block mb-5"
+            className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 block mb-3"
           >
             Sobre mí
           </motion.span>
@@ -35,7 +35,7 @@ export default function Recorrido() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformOrigin: "left" }}
-            className="h-px bg-white w-10 mb-6 opacity-20"
+            className="h-px bg-white w-10 mb-4 opacity-20"
           />
 
           {/* Filosofía — grande y prominente */}
@@ -44,14 +44,17 @@ export default function Recorrido() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display font-light text-white text-2xl md:text-3xl lg:text-4xl leading-snug max-w-3xl"
+            className="font-display font-light text-white text-xl md:text-3xl lg:text-4xl leading-snug max-w-3xl"
           >
             "{rec.philosophy}"
           </motion.blockquote>
         </div>
 
         {/* Timeline grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
+        <div
+          className="flex gap-3 overflow-x-auto pb-1 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-px md:bg-white/5 md:overflow-visible md:pb-0"
+          style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {TIMELINE.map((item, i) => (
             <motion.div
               key={i}
@@ -59,7 +62,8 @@ export default function Recorrido() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="bg-black p-4 md:p-7 hover:bg-white/5 transition-colors group"
+              style={{ scrollSnapAlign: "start" }}
+              className="flex-shrink-0 w-[80%] xs:w-64 border border-white/10 rounded md:w-auto md:border-0 md:rounded-none bg-black p-4 md:p-7 hover:bg-white/5 transition-colors group"
             >
               {/* Acento + label */}
               <div className="flex items-center gap-2 mb-5">

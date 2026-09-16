@@ -17,7 +17,7 @@ export default function ProyectosProios() {
   const { lang } = useLang();
   const disc = translations[lang].discografia;
 
-  const [openId, setOpenId] = useState<string | null>("falsos-clones");
+  const [openId, setOpenId] = useState<string | null>(null);
 
   return (
     <section id="discografia" className="py-8 md:py-36 bg-neutral-50">
